@@ -15,7 +15,8 @@ aplicatie = [
 ]
 
 @app.route("/")
-def hello_world():
+@app.route("/home")
+def home():
     return render_template('home.html', aplicatie=aplicatie)
 
 @app.route("/about")

@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 {% for aplicatie in aplicatie %}
-    <h1>{{ aplicatie.Application_Name}}</h1>
-    <p>Install :{{ aplicatie.Install_command}}</p>
+   <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="#">{{ aplicatie.Application_Name}}</a></h2>
+            <p class="article-content">Install :{{ aplicatie.Install_command}}</p>
+          </div>
+        </article>
 {% endfor %}
 {% endblock %}
+
+
+{{ aplicatie.Application_Name}}
+Install :{{ aplicatie.Install_command}}
