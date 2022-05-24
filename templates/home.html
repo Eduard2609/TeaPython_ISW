@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+{% for aplicatie in aplicatie %}
+    <h1>{{ aplicatie.Application_Name}}</h1>
+    <p>Install :{{ aplicatie.Install_command}}</p>
+{% endfor %}
+{% endblock %}
