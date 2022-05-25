@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="06115d0f-ab78-4f11-acc6-f8aa9a63bcb3" name="Changes" comment="semi legat dataabse">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< Updated upstream
@@ -12,6 +13,9 @@
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
     </list>
+=======
+    <list default="true" id="06115d0f-ab78-4f11-acc6-f8aa9a63bcb3" name="Changes" comment="semi legat dataabse" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
