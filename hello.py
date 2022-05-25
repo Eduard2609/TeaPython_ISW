@@ -34,10 +34,6 @@ class Genres(db.Model):
     def __repr__(self):
         return f"Genre('{self.Genre_name}')"
 
-class AppsGenres(db.Model):
-    Appsgenres_id = db.Column(db.Integer, primary_key=True)
-    Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
-    Genres_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
 
     def __repr__(self):
         return f"AppsGenres('{self.Application_id}', '{self.Genre_id}')"
@@ -57,6 +53,12 @@ class AppsPresets(db.Model):
 
     def __repr__(self):
         return f"AppsPresets('{self.Presets_id}', '{self.Application_id}')"
+
+class AppsGenres(db.Model):
+    Appsgenres_id = db.Column(db.Integer, primary_key=True)
+    Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
+    Genres_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
+
 
 # ---------------- Database model ORM -----END ---------------- #
 
