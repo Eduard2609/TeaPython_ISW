@@ -9,60 +9,57 @@ db = SQLAlchemy(app)
 
 # ---------------- Database model ORM ---------------- #
 
-class Users(db.Model):
-    Users_id = db.Column(db.Integer, primary_key=True)
-    Username = db.Column(db.String(30), unique=True, nullable=False)
-    Password = db.Column(db.String(225), nullable=False)
-    Email = db.Column(db.String(120), unique=True, nullable=False)
+class User(db.Model):
+    id_user = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+    sugestion = db.relationship('Sugestion', backref='user', lazy=True)
 
     def __repr__(self):
-        return f"User('{self.Username}', '{self.Email}')"
+        return f"User('{self.username}', '{self.email}')"
 
-class Applications(db.Model):
-    Applications_id = db.Column(db.Integer, primary_key=True)
-    Application_name = db.Column(db.String(120), unique=True, nullable=False)
-    Install_command = db.Column(db.String(225), nullable=False)
-    Image_file = db.Column(db.String(225), nullable=False, default='default.png')
-
-    def __repr__(self):
-        return f"Application('{self.Application_name}', '{self.Install_command}', '{self.Image_file}')"
-
-class Genres(db.Model):
-    Genres_id = db.Column(db.Integer, primary_key=True)
-    Genres_name = db.Column(db.String(120), unique=True, nullable=False)
+class Application(db.Model):
+    id_application = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), unique=True, nullable=False)
+    description = db.Column(db.String(120), unique=True, nullable=False)
+    genre = db.Column(db.String(20), unique=True, nullable=False)
+    install_command = db.Column(db.String(120), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
 
     def __repr__(self):
-        return f"Genre('{self.Genre_name}')"
+        return f"Application('{self.name}', '{self.description}', '{self.genre}', '{self.install_command}', '{self.image_file}')"
 
-
-class Presets(db.Model):
-    Presets_id = db.Column(db.Integer, primary_key=True)
-    Preset_name = db.Column(db.String(120), unique=True, nullable=False)
-    Users_id = db.Column(db.Integer, db.ForeignKey('Users.Users_id'), nullable=False)
-    Users = db.relationship('Users', backref=db.backref('Presets', lazy=True))
-
-    def __repr__(self):
-        return f"Preset('{self.Preset_name}', '{self.Users_id}')"
-
-class AppsPresets(db.Model):
-    AppsPresets_id = db.Column(db.Integer, primary_key=True)
-    Presets_id = db.Column(db.Integer, db.ForeignKey('Presets.Presets_id'), nullable=False)
-    Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
-    Applications = db.relationship('Applications', backref='AppsPresets')
-    Presets = db.relationship('Presets', backref='AppsPresets')
+class Suggestion(db.Model):
+    id_suggestion = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), unique=True, nullable=False)
+    description = db.Column(db.String(120), unique=True, nullable=False)
+    genre = db.Column(db.String(20), unique=True, nullable=False)
+    install_command = db.Column(db.String(120), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
 
     def __repr__(self):
-        return f"AppsPresets('{self.Presets_id}', '{self.Application_id}')"
+        return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', '{self.install_command}', '{self.image_file}')"
 
-class AppsGenres(db.Model):
-    Appsgenres_id = db.Column(db.Integer, primary_key=True)
-    Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
-    Genres_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
-    Applications = db.relationship('Applications', backref='AppsGenres')
-    Genres = db.relationship('Genres', backref='AppsGenres')
+# class Preset(db.Model):
+#     id_preset = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(20), unique=True, nullable=False)
+#     description = db.Column(db.String(120), unique=True, nullable=False)
+#
+#     def __repr__(self):
+#         return f"Preset('{self.name}', '{self.description}')"
 
-    def __repr__(self):
-        return f"AppsGenres('{self.Application_id}', '{self.Genre_id}')"
+# class Preset_Application(db.Model):
+#     id_preset_application = db.Column(db.Integer, primary_key=True)
+#     id_preset = db.Column(db.Integer, db.ForeignKey('preset.id_preset'), nullable=False)
+#     id_application = db.Column(db.Integer, db.ForeignKey('application.id_application'), nullable=False)
+#
+#     def __repr__(self):
+#         return f"Preset_Application('{self.id_preset}', '{self.id_application}')"
+
+
+
+
 
 # ---------------- Database model ORM -----END ---------------- #
 
@@ -139,3 +136,63 @@ def login():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+# ---------------- First failed ORM -------------------------- #
+
+
+# class Users(db.Model):
+#     Users_id = db.Column(db.Integer, primary_key=True)
+#     Username = db.Column(db.String(30), unique=True, nullable=False)
+#     Password = db.Column(db.String(225), nullable=False)
+#     Email = db.Column(db.String(120), unique=True, nullable=False)
+#
+#     def __repr__(self):
+#         return f"User('{self.Username}', '{self.Email}')"
+#
+# class Applications(db.Model):
+#     Applications_id = db.Column(db.Integer, primary_key=True)
+#     Application_name = db.Column(db.String(120), unique=True, nullable=False)
+#     Install_command = db.Column(db.String(225), nullable=False)
+#     Image_file = db.Column(db.String(225), nullable=False, default='default.png')
+#
+#     def __repr__(self):
+#         return f"Application('{self.Application_name}', '{self.Install_command}', '{self.Image_file}')"
+#
+# class Genres(db.Model):
+#     Genres_id = db.Column(db.Integer, primary_key=True)
+#     Genres_name = db.Column(db.String(120), unique=True, nullable=False)
+#
+#     def __repr__(self):
+#         return f"Genre('{self.Genre_name}')"
+#
+#
+# class Presets(db.Model):
+#     Presets_id = db.Column(db.Integer, primary_key=True)
+#     Preset_name = db.Column(db.String(120), unique=True, nullable=False)
+#     Users_id = db.Column(db.Integer, db.ForeignKey('Users.Users_id'), nullable=False)
+#     Users = db.relationship('Users', backref=db.backref('Presets', lazy=True))
+#
+#     def __repr__(self):
+#         return f"Preset('{self.Preset_name}', '{self.Users_id}')"
+#
+# class AppsPresets(db.Model):
+#     AppsPresets_id = db.Column(db.Integer, primary_key=True)
+#     Presets_id = db.Column(db.Integer, db.ForeignKey('Presets.Presets_id'), nullable=False)
+#     Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
+#     Applications = db.relationship('Applications', backref='AppsPresets')
+#     Presets = db.relationship('Presets', backref='AppsPresets')
+#
+#     def __repr__(self):
+#         return f"AppsPresets('{self.Presets_id}', '{self.Application_id}')"
+#
+# class AppsGenres(db.Model):
+#     Appsgenres_id = db.Column(db.Integer, primary_key=True)
+#     Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
+#     Genres_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
+#     Applications = db.relationship('Applications', backref='AppsGenres')
+#     Genres = db.relationship('Genres', backref='AppsGenres')
+#
+#     def __repr__(self):
+#         return f"AppsGenres('{self.Application_id}', '{self.Genre_id}')"
