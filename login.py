@@ -18,7 +18,7 @@ class AdminForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     description = StringField('App description',
                         validators=[DataRequired(), Length(min=2, max=20)])
-    genre = StringField('Password', validators=[DataRequired()])
+    genre = StringField('Genre', validators=[DataRequired()])
     install_command = StringField('Install_command',
                                      validators=[DataRequired()])
     image_file = StringField('image_file',
