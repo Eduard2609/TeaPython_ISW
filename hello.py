@@ -9,7 +9,7 @@ db = SQLAlchemy(app)
 
 # ---------------- Database model ORM ---------------- #
 
-class User(db.Model):
+class Users(db.Model):
     Users_id = db.Column(db.Integer, primary_key=True)
     Username = db.Column(db.String(30), unique=True, nullable=False)
     Password = db.Column(db.String(225), nullable=False)
@@ -45,7 +45,7 @@ class AppsGenres(db.Model):
 class Presets(db.Model):
     Presets_id = db.Column(db.Integer, primary_key=True)
     Preset_name = db.Column(db.String(120), unique=True, nullable=False)
-    Users_id = db.Column(db.Integer, db.ForeignKey('User.Users_id'), nullable=False)
+    Users_id = db.Column(db.Integer, db.ForeignKey('Users.Users_id'), nullable=False)
 
     def __repr__(self):
         return f"Preset('{self.Preset_name}', '{self.Users_id}')"
