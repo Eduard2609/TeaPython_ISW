@@ -37,6 +37,7 @@ class Suggestion(db.Model):
     genre = db.Column(db.String(20), unique=True, nullable=False)
     install_command = db.Column(db.String(120), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    id_user = db.Column(db.Integer, db.ForeignKey('user.id_user'), nullable=False)
 
     def __repr__(self):
         return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', '{self.install_command}', '{self.image_file}')"
