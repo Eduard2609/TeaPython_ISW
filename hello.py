@@ -115,7 +115,13 @@ def home():
 
 @app.route("/about")
 def about():
-    return  render_template('about.html')
+    return render_template('about.html')
+
+@app.route("/admin")
+def admin():
+    form = AdminForm()
+    return render_template('admin.html', title='Admin', form=form)
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
