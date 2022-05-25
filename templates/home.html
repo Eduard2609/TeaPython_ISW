@@ -9,13 +9,20 @@
 <!--            <p class="article-content ">Install :{{ aplicatie.Install_command}}</p>-->
               <p class="article-content visually-hidden">Install :{{ aplicatie.Install_command}}</p>
 
+              <p class="Article-content">Description:{{aplicatie.Description}}</p>
+              <p class="Article-content">Genre:{{aplicatie.Genre}}</p>
+<!--              <p class="Article-content">Image_file:{{aplicatie.Image_file}}</p>-->
+              <img src="{{url_for('static', filename='Hermes.png')}}" align="right">{{aplicatie.Image_file}}</img>
+
 <!--              <input type="checkbox" name="checkmark" value="checkmark" style="float:right;">-->
                 <div class="form-check form-switch">
              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
 <!-- label pt switch            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>-->
                 </div>
-          </div>
+             </div>
         </article>
+
+
 {% endfor %}
 {% endblock %}
 
