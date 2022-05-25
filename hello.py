@@ -35,9 +35,9 @@ class Genres(db.Model):
         return f"Genre('{self.Genre_name}')"
 
 class AppsGenres(db.Model):
-    AppsGenres_id = db.Column(db.Integer, primary_key=True)
+    Appsgenres_id = db.Column(db.Integer, primary_key=True)
     Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
-    Genre_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
+    Genres_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
 
     def __repr__(self):
         return f"AppsGenres('{self.Application_id}', '{self.Genre_id}')"
