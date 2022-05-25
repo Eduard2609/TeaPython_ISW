@@ -35,13 +35,11 @@ class Genres(db.Model):
         return f"Genre('{self.Genre_name}')"
 
 
-    def __repr__(self):
-        return f"AppsGenres('{self.Application_id}', '{self.Genre_id}')"
-
 class Presets(db.Model):
     Presets_id = db.Column(db.Integer, primary_key=True)
     Preset_name = db.Column(db.String(120), unique=True, nullable=False)
     Users_id = db.Column(db.Integer, db.ForeignKey('Users.Users_id'), nullable=False)
+    Users = db.relationship('Users', backref=db.backref('Presets', lazy=True))
 
     def __repr__(self):
         return f"Preset('{self.Preset_name}', '{self.Users_id}')"
@@ -50,6 +48,8 @@ class AppsPresets(db.Model):
     AppsPresets_id = db.Column(db.Integer, primary_key=True)
     Presets_id = db.Column(db.Integer, db.ForeignKey('Presets.Presets_id'), nullable=False)
     Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
+    Applications = db.relationship('Applications', backref='AppsPresets')
+    Presets = db.relationship('Presets', backref='AppsPresets')
 
     def __repr__(self):
         return f"AppsPresets('{self.Presets_id}', '{self.Application_id}')"
@@ -58,7 +58,11 @@ class AppsGenres(db.Model):
     Appsgenres_id = db.Column(db.Integer, primary_key=True)
     Application_id = db.Column(db.Integer, db.ForeignKey('Applications.Applications_id'), nullable=False)
     Genres_id = db.Column(db.Integer, db.ForeignKey('Genres.Genres_id'), nullable=False)
+    Applications = db.relationship('Applications', backref='AppsGenres')
+    Genres = db.relationship('Genres', backref='AppsGenres')
 
+    def __repr__(self):
+        return f"AppsGenres('{self.Application_id}', '{self.Genre_id}')"
 
 # ---------------- Database model ORM -----END ---------------- #
 
