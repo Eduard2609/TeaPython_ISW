@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
-from login import RegistrationForm, LoginForm
+from login import RegistrationForm, LoginForm , AdminForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -107,7 +107,13 @@ def home():
 
 @app.route("/about")
 def about():
-    return  render_template('about.html')
+    return render_template('about.html')
+
+@app.route("/admin")
+def admin():
+    form = AdminForm()
+    return render_template('admin.html', title='Admin', form=form)
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
