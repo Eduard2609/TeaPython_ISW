@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from login import RegistrationForm, LoginForm
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -35,12 +36,15 @@ class Suggestion(db.Model):
     name = db.Column(db.String(20), unique=True, nullable=False)
     description = db.Column(db.String(120), unique=True, nullable=False)
     genre = db.Column(db.String(20), unique=True, nullable=False)
-    install_command = db.Column(db.String(120), nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    install_command = db.Column(db.String(120), nullable=True)
+    image_file = db.Column(db.String(20), nullable=True, default='default.jpg')
+    date_sugested = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
     id_user = db.Column(db.Integer, db.ForeignKey('user.id_user'), nullable=False)
 
+
     def __repr__(self):
-        return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', '{self.install_command}', '{self.image_file}')"
+        return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', '{self.image_file}', '{self.date_sugested}')"
 
 # class Preset(db.Model):
 #     id_preset = db.Column(db.Integer, primary_key=True)
