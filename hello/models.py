@@ -46,6 +46,9 @@ class Suggestion(db.Model):
 
     id_user = db.Column(db.Integer, db.ForeignKey('user.id_user'), nullable=False)
 
+    def get_user(self):
+        return User.query.get(int(self.id_user))
+
     def __repr__(self):
         return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', " \
                f"'{self.image_file}', '{self.date_sugested}')"

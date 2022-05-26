@@ -1,8 +1,10 @@
 import os
 import secrets
+from PIL import Image
+from datetime import datetime
 from flask import render_template, url_for, flash, redirect, request
 from hello import app, db, bcrypt
-from hello.login import RegistrationForm, LoginForm, AdminForm, SuggestionForm, UpdateAccountForm
+from hello.login import RegistrationForm, LoginForm, AdminForm, UpdateAccountForm, SuggestionForm
 from hello.models import User, Application, Suggestion
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -48,32 +50,12 @@ aplicatie = [
 @app.route("/")
 @app.route("/home")
 def home():
-    image_file = url_for('static', filename='app_pics/default.jpg')
+   # image_file = url_for('static', filename='app_pics/default.jpg')
     return render_template('home.html', aplicatie=aplicatie)
-
 
 @app.route("/about")
 def about():
     return render_template('about.html')
-
-
-@app.route("/admin")
-def admin():
-    form = AdminForm()
-    return render_template('admin.html', title='Admin', form=form)
-
-
-@app.route("/suggestion", methods=['GET', 'POST'])
-@login_required
-def suggestion():
-    form = SuggestionForm()
-    return render_template('suggestion.html', title='Suggestion', form=form)
-
-
-@app.route("/suggestedapps")
-def suggestedapps():
-    return render_template('suggestedapps.html', aplicatie=aplicatie)
-
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -126,3 +108,38 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     return render_template('account.html', title='Account', form=form)
+
+
+
+@app.route("/admin")
+def admin():
+    form = AdminForm()
+    return render_template('admin.html', title='Admin', form=form)
+
+
+@app.route("/suggestedapps")
+def suggestedapps():
+    return render_template('suggestedapps.html', aplicatie=aplicatie)
+
+# @app.route("/suggestion", methods=['GET', 'POST'])
+# @login_required
+# def suggestion():
+#     form = SuggestionForm()
+#     if form.validate_on_submit():
+#
+#         suggestion_item = Suggestion(name=form.name.data , description=form.description.data, genre=form.genre.data, date_suggested=datetime.now() ,id_user=current_user.id)
+#
+#         db.session.add(suggestion_item)
+#         db.session.commit()
+#         flash('Your suggestion has been submitted!', 'success')
+#         return redirect(url_for('suggestedapps'))
+#     return render_template('suggestion.html', title='Suggestion', form=form)
+
+@app.route("/suggestedapps/new", methods=['GET', 'POST'])
+@login_required
+def new_suggestion():
+    form = SuggestionForm()
+    if form.validate_on_submit():
+        flash('Your suggestion has been submitted!', 'success')
+        return redirect(url_for('suggestedapps'))
+    return render_template('create_suggestion.html', title='New Suggestion', form=form)
