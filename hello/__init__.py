@@ -10,5 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///TeaBase.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login' # daca nu esti logat esti redirectionat la pagina de login
+login_manager.login_message_category = 'warning' # mesajul de eroare
 
 from  hello import routes

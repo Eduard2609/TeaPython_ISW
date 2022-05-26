@@ -85,11 +85,6 @@ small {
   color: white;
 }
 
-a {
-  display: block;
-  padding: 8px;
-  background-color: rgba(221, 221, 221, 0);
-}
 
 ul {
   list-style-type: none;
@@ -112,5 +107,11 @@ li a {
 }
 
 li a:hover {
-  background-color: #111;
+  background-color: rgba(17, 17, 17, 0);
 }
+
+a:hover {
+  color: #e16868;
+  text-decoration: none;
+}
+

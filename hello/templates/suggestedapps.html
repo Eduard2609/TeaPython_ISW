@@ -5,7 +5,7 @@
 
    <article class="media content-section">
           <div class="media-body">
-            <h2><a class="article-title" href="#">{{ aplicatie.Application_Name}}</a></h2>
+            <h2><a class="title" >{{ aplicatie.Application_Name}}</a></h2>
 <!--            <p class="article-content ">Install :{{ aplicatie.Install_command}}</p>-->
               <p class="article-content visually-hidden">Install :{{ aplicatie.Install_command}}</p>
 
@@ -15,17 +15,13 @@
               <img src="{{url_for('static', filename='Hermes.png')}}" align="right">{{aplicatie.Image_file}}</img>
 
 <!--              <input type="checkbox" name="checkmark" value="checkmark" style="float:right;">-->
-                <div class="form-check form-switch">
-             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-<!-- label pt switch            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>-->
-                </div>
+
              </div>
+
+
         </article>
+
 
 
 {% endfor %}
 {% endblock %}
-
-
-{{ aplicatie.Application_Name}}
-Install :{{ aplicatie.Install_command}}

@@ -5,12 +5,12 @@
 
    <article class="media content-section">
           <div class="media-body">
-            <h2><a class="article-title" href="#">{{ aplicatie.Application_Name}}</a></h2>
+            <h2><a  >{{ aplicatie.Application_Name}}</a></h2>
 <!--            <p class="article-content ">Install :{{ aplicatie.Install_command}}</p>-->
               <p class="article-content visually-hidden">Install :{{ aplicatie.Install_command}}</p>
 
               <p class="Article-content">Description:{{aplicatie.Description}}</p>
-              <p class="Article-content">Genre:{{aplicatie.Genre}}</p>
+              <p class="badge text-bg-secondary">Genre:{{aplicatie.Genre}}</p>
 <!--              <p class="Article-content">Image_file:{{aplicatie.Image_file}}</p>-->
               <img src="{{url_for('static', filename='Hermes.png')}}" align="right">{{aplicatie.Image_file}}</img>
 

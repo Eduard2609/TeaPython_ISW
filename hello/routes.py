@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from hello import app, db, bcrypt
 from hello.login import RegistrationForm, LoginForm, AdminForm, SuggestionForm
 from hello.models import User, Application, Suggestion
@@ -61,6 +61,7 @@ def admin():
 
 
 @app.route("/suggestion")
+@login_required
 def suggestion():
     form = SuggestionForm()
     return render_template('suggestion.html', title='Suggestion', form=form)
@@ -96,7 +97,8 @@ def login():
         print(user)
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            return redirect(url_for('home'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
