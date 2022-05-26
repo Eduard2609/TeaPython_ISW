@@ -1,7 +1,14 @@
 from datetime import datetime
-from hello import db
+from hello import db, login_manager
+from flask_login import UserMixin
 
-class User(db.Model):
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class User(db.Model, UserMixin):
     id_user = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -10,6 +17,10 @@ class User(db.Model):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
+
+    def get_id(self):
+        return self.id_user
+
 
 class Application(db.Model):
     id_application = db.Column(db.Integer, primary_key=True)
@@ -20,7 +31,9 @@ class Application(db.Model):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
 
     def __repr__(self):
-        return f"Application('{self.name}', '{self.description}', '{self.genre}', '{self.install_command}', '{self.image_file}')"
+        return f"Application('{self.name}', '{self.description}', '{self.genre}', " \
+               f"'{self.install_command}', '{self.image_file}') "
+
 
 class Suggestion(db.Model):
     id_suggestion = db.Column(db.Integer, primary_key=True)
@@ -33,6 +46,6 @@ class Suggestion(db.Model):
 
     id_user = db.Column(db.Integer, db.ForeignKey('user.id_user'), nullable=False)
 
-
     def __repr__(self):
-        return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', '{self.image_file}', '{self.date_sugested}')"
+        return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', " \
+               f"'{self.image_file}', '{self.date_sugested}')"

@@ -1,9 +1,8 @@
 from flask import render_template, url_for, flash, redirect
-from hello import app
+from hello import app, db, bcrypt
 from hello.login import RegistrationForm, LoginForm, AdminForm, SuggestionForm
 from hello.models import User, Application, Suggestion
-
-
+from flask_login import login_user, current_user, logout_user, login_required
 
 aplicatie = [
     {
@@ -11,7 +10,7 @@ aplicatie = [
         'Application_Name': 'Google Drive',
         'Install_command': 'choco install google-drive-file-stream',
     },
-   {
+    {
         'Application_ID': '2',
         'Application_Name': ' Google Chrome',
         'Install_command': 'choco install googlechrome',
@@ -43,24 +42,29 @@ aplicatie = [
     }
 ]
 
+
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html', aplicatie=aplicatie)
 
+
 @app.route("/about")
 def about():
     return render_template('about.html')
+
 
 @app.route("/admin")
 def admin():
     form = AdminForm()
     return render_template('admin.html', title='Admin', form=form)
 
+
 @app.route("/suggestion")
 def suggestion():
     form = SuggestionForm()
     return render_template('suggestion.html', title='Suggestion', form=form)
+
 
 @app.route("/suggestedapps")
 def suggestedapps():
@@ -69,20 +73,36 @@ def suggestedapps():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'alexandru.momoi@student.unitbv.ro' and form.password.data == 'parola':
-            flash('You have been logged in!', 'success')
+        user = User.query.filter_by(email=form.email.data).first()
+        print(user)
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
             return redirect(url_for('home'))
         else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
+            flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
