@@ -34,10 +34,11 @@
                 <li> <a  href="{{ url_for('suggestedapps') }}">Suggested Apps</a></li>
 
                 {%  if current_user.is_authenticated %}
-                <li style="float:right"> <a  class="active"  href="{{ url_for('logout') }}">Logout</a></li>
+                    <li > <a  class="active"  href="{{ url_for('account') }}">Account</a></li>
+                <li > <a  class="active"  href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
-                <li style="float:right"><a class="active" href="{{ url_for('login') }}">Login</a></li>
-                <li style="float:right"><a class="active" href="{{ url_for('register') }}">Register</a></li>
+                <li ><a class="active" href="{{ url_for('login') }}">Login</a></li>
+                <li ><a class="active" href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
             </ul>
           </div>

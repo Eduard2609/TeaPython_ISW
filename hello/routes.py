@@ -1,6 +1,8 @@
+import os
+import secrets
 from flask import render_template, url_for, flash, redirect, request
 from hello import app, db, bcrypt
-from hello.login import RegistrationForm, LoginForm, AdminForm, SuggestionForm
+from hello.login import RegistrationForm, LoginForm, AdminForm, SuggestionForm, UpdateAccountForm
 from hello.models import User, Application, Suggestion
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -46,6 +48,7 @@ aplicatie = [
 @app.route("/")
 @app.route("/home")
 def home():
+    image_file = url_for('static', filename='app_pics/default.jpg')
     return render_template('home.html', aplicatie=aplicatie)
 
 
@@ -60,7 +63,7 @@ def admin():
     return render_template('admin.html', title='Admin', form=form)
 
 
-@app.route("/suggestion")
+@app.route("/suggestion", methods=['GET', 'POST'])
 @login_required
 def suggestion():
     form = SuggestionForm()
@@ -108,3 +111,18 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/account", methods=['GET', 'POST'])
+@login_required
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    return render_template('account.html', title='Account', form=form)
