@@ -1,7 +1,8 @@
 from flask import render_template, url_for, flash, redirect
 from hello import app
-from hello.login import RegistrationForm, LoginForm, AdminForm
+from hello.login import RegistrationForm, LoginForm, AdminForm, SuggestionForm
 from hello.models import User, Application, Suggestion
+
 
 
 aplicatie = [
@@ -55,6 +56,15 @@ def about():
 def admin():
     form = AdminForm()
     return render_template('admin.html', title='Admin', form=form)
+
+@app.route("/suggestion")
+def suggestion():
+    form = SuggestionForm()
+    return render_template('suggestion.html', title='Suggestion', form=form)
+
+@app.route("/suggestedapps")
+def suggestedapps():
+    return render_template('suggestedapps.html', aplicatie=aplicatie)
 
 
 @app.route("/register", methods=['GET', 'POST'])

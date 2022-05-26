@@ -31,3 +31,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+
+class SuggestionForm(FlaskForm):
+    name = StringField('App name',
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    description = StringField('App description',
+                        validators=[DataRequired(), Length(min=2, max=20)])
+    genre = StringField('Genre', validators=[DataRequired()])
+    submit = SubmitField('Submit')
