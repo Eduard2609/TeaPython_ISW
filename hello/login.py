@@ -60,6 +60,7 @@ class SuggestionForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
     genre = StringField('Genre', validators=[DataRequired()])
+    install_command = StringField('Install Command', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 

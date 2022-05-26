@@ -126,7 +126,8 @@ def new_suggestion():
         db.session.commit()
         flash('Your suggestion has been submitted!', 'success')
         return redirect(url_for('suggestedapps'))
-    return render_template('create_suggestion.html', title='New Suggestion', form=form)
+    return render_template('create_suggestion.html', title='New Suggestion',
+                           form=form,legend='New Suggestion')
 
 @app.route("/suggestedapps/<int:id_suggestion>")
 def suggestion(id_suggestion):
@@ -140,6 +141,18 @@ def update_sugestion(id_suggestion):
     if suggestion.id_user != current_user.id_user:
         abort(403)
     form = SuggestionForm()
-    return render_template('create_suggestion.html', title='Update Suggestion', form=form)
-
-
+    if form.validate_on_submit():
+        suggestion.name = form.name.data
+        suggestion.description = form.description.data
+        suggestion.install_command = form.install_command.data
+        suggestion.genre = form.genre.data
+        db.session.commit()
+        flash('Your suggestion has been updated!', 'success')
+        return redirect(url_for('suggestedapps', id_suggestion=suggestion.id_suggestion))
+    elif request.method == 'GET':
+        form.name.data = suggestion.name
+        form.description.data = suggestion.description
+        form.install_command.data = suggestion.install_command
+        form.genre.data = suggestion.genre
+    return render_template('create_suggestion.html', title='Update Suggestion',
+                           form=form, legend='Update Suggestion')
