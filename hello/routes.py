@@ -2,60 +2,44 @@ import os
 import secrets
 from PIL import Image
 from datetime import datetime
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from hello import app, db, bcrypt
 from hello.login import RegistrationForm, LoginForm, AdminForm, UpdateAccountForm, SuggestionForm
 from hello.models import User, Application, Suggestion
 from flask_login import login_user, current_user, logout_user, login_required
 
-aplicatie = [
-    {
-        'Application_ID': '1',
-        'Application_Name': 'Google Drive',
-        'Install_command': 'choco install google-drive-file-stream',
-    },
-    {
-        'Application_ID': '2',
-        'Application_Name': ' Google Chrome',
-        'Install_command': 'choco install googlechrome',
-    },
-    {
-        'Application_ID': '3',
-        'Application_Name': ' Opera ',
-        'Install_command': 'choco install opera',
-    },
-    {
-        'Application_ID': '4',
-        'Application_Name': ' Opera Gx',
-        'Install_command': 'choco install opera-gx',
-    },
-    {
-        'Application_ID': '5',
-        'Application_Name': ' Firefox',
-        'Install_command': 'choco install firefox',
-    },
-    {
-        'Application_ID': '6',
-        'Application_Name': ' Edge',
-        'Install_command': 'choco install microsoft-edge',
-    },
-    {
-        'Application_ID': '7',
-        'Application_Name': ' Discord',
-        'Install_command': 'choco install discord',
-    }
-]
+
+# aplicatie = [
+#     {
+#         'Application_ID': '1',
+#         'Application_Name': 'Google Drive',
+#         'Install_command': 'choco install google-drive-file-stream',
+#     },
+#     {
+#         'Application_ID': '2',
+#         'Application_Name': ' Google Chrome',
+#         'Install_command': 'choco install googlechrome',
+#     },
+#     {
+#         'Application_ID': '3',
+#         'Application_Name': ' Discord',
+#         'Install_command': 'choco install discord',
+#     }
+# ]
 
 
 @app.route("/")
 @app.route("/home")
 def home():
-   # image_file = url_for('static', filename='app_pics/default.jpg')
+    # image_file = url_for('static', filename='app_pics/default.jpg')
+    aplicatie = Application.query.all()
     return render_template('home.html', aplicatie=aplicatie)
+
 
 @app.route("/about")
 def about():
     return render_template('about.html')
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -94,6 +78,7 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -110,36 +95,51 @@ def account():
     return render_template('account.html', title='Account', form=form)
 
 
-
-@app.route("/admin")
-def admin():
-    form = AdminForm()
-    return render_template('admin.html', title='Admin', form=form)
-
-
 @app.route("/suggestedapps")
 def suggestedapps():
-    return render_template('suggestedapps.html', aplicatie=aplicatie)
+    sugg_aplicatie = Suggestion.query.all()
+    return render_template('suggestedapps.html', sugg_aplicatie=sugg_aplicatie)
 
-# @app.route("/suggestion", methods=['GET', 'POST'])
-# @login_required
-# def suggestion():
-#     form = SuggestionForm()
-#     if form.validate_on_submit():
-#
-#         suggestion_item = Suggestion(name=form.name.data , description=form.description.data, genre=form.genre.data, date_suggested=datetime.now() ,id_user=current_user.id)
-#
-#         db.session.add(suggestion_item)
-#         db.session.commit()
-#         flash('Your suggestion has been submitted!', 'success')
-#         return redirect(url_for('suggestedapps'))
-#     return render_template('suggestion.html', title='Suggestion', form=form)
+
+@app.route("/admin")
+@login_required
+def admin():
+    form = AdminForm()
+    if form.validate_on_submit():
+        admin_item = Application(name=form.name.data, description=form.description.data, genre=form.genre.data,
+                                 install_command=form.install_command.data)
+        db.session.add(admin_item)
+        db.session.commit()
+        flash('Your suggestion has been submitted!', 'success')
+        return redirect(url_for('home'))
+    return render_template('admin.html', title='Admin', form=form)
+
 
 @app.route("/suggestedapps/new", methods=['GET', 'POST'])
 @login_required
 def new_suggestion():
     form = SuggestionForm()
     if form.validate_on_submit():
+        suggestion_item = Suggestion(name=form.name.data, description=form.description.data, genre=form.genre.data,
+                                    id_user=current_user.id_user)
+        db.session.add(suggestion_item)
+        db.session.commit()
         flash('Your suggestion has been submitted!', 'success')
         return redirect(url_for('suggestedapps'))
     return render_template('create_suggestion.html', title='New Suggestion', form=form)
+
+@app.route("/suggestedapps/<int:id_suggestion>")
+def suggestion(id_suggestion):
+    suggestion = Suggestion.query.get_or_404(id_suggestion)
+    return render_template('suggestion.html', title=suggestion.name, suggestion=suggestion)
+
+@app.route("/suggestedapps/<int:id_suggestion>/update", methods=['GET', 'POST'])
+@login_required
+def update_sugestion(id_suggestion):
+    suggestion = Suggestion.query.get_or_404(id_suggestion)
+    if suggestion.id_user != current_user.id_user:
+        abort(403)
+    form = SuggestionForm()
+    return render_template('create_suggestion.html', title='Update Suggestion', form=form)
+
+

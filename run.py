@@ -1,7 +1,9 @@
 from hello import app
+import asyncio
 
-if __name__ == '__main__':
-    app.run(debug=True)
+async def main():
+    if __name__ == '__main__':
+        app.run(debug=True)
 
-
+asyncio.run(main())
 

@@ -5,9 +5,14 @@ body {
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+ h2, h3, h4, h5, h6 {
   color: #444444;
 }
+
+ h1 {
+  color: #000000;
+}
+
 
 .bg-steel {
   background-color: black;
@@ -115,3 +120,6 @@ a:hover {
   text-decoration: none;
 }
 
+img {
+  scale: none;
+}

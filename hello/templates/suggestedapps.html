@@ -1,26 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for aplicatie in aplicatie %}
+    <div class="container-fluid">
+    <h1 class="display-5">Suggestions</h1>
+    </div>
+{% for sugg_aplicatie in sugg_aplicatie %}
 
 
-   <article class="media content-section">
+  <article class="media content-section">
           <div class="media-body">
-            <h2><a class="title" >{{ aplicatie.Application_Name}}</a></h2>
-<!--            <p class="article-content ">Install :{{ aplicatie.Install_command}}</p>-->
-              <p class="article-content visually-hidden">Install :{{ aplicatie.Install_command}}</p>
+            <h2><a class="article-title" href="{{ url_for('suggestion', id_suggestion = sugg_aplicatie.id_suggestion) }}" >{{sugg_aplicatie.name}}</a> <small class="text-muted">{{ sugg_aplicatie.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
+            <small class="text-muted">Suggested by : {{sugg_aplicatie.user.username  }}  </small>
+<!--            <p class="article-content ">Install :{{ sugg_aplicatie.install_command}}</p>-->
+              <p class="article-content visually-hidden">Install :{{ sugg_aplicatie.install_command}}</p>
 
-              <p class="Article-content">Description:{{aplicatie.Description}}</p>
-              <p class="Article-content">Genre:{{aplicatie.Genre}}</p>
-<!--              <p class="Article-content">Image_file:{{aplicatie.Image_file}}</p>-->
-              <img src="{{url_for('static', filename='Hermes.png')}}" align="right">{{aplicatie.Image_file}}</img>
+              <p class="Article-content">{{sugg_aplicatie.description}}</p>
+              <p class="badge text-bg-secondary">Genre : {{sugg_aplicatie.genre}}</p>
+
+<!--              <p class="Article-content">Image_file:{{sugg_aplicatie.image_file}}</p>-->
+              <img src="{{ image_file }}">
 
 <!--              <input type="checkbox" name="checkmark" value="checkmark" style="float:right;">-->
 
              </div>
-
-
         </article>
-
 
 
 {% endfor %}
