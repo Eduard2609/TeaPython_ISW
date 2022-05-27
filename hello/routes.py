@@ -1,6 +1,5 @@
 import os
 import secrets
-from PIL import Image
 from datetime import datetime
 from flask import render_template, url_for, flash, redirect, request, abort
 from hello import app, db, bcrypt
