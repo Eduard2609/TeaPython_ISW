@@ -96,8 +96,8 @@ def account():
 
 @app.route("/suggestedapps")
 def suggestedapps():
-    sugg_aplicatie = Suggestion.query.all()
-    return render_template('suggestedapps.html', sugg_aplicatie=sugg_aplicatie)
+    aplicatie = Suggestion.query.all()
+    return render_template('suggestedapps.html', aplicatie=aplicatie)
 
 
 @app.route("/admin")
