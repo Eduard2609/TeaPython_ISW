@@ -141,10 +141,10 @@ def update_sugestion(id_suggestion):
         abort(403)
     form = SuggestionForm()
     if form.validate_on_submit():
-        suggestion.name = form.name.data
-        suggestion.description = form.description.data
-        suggestion.install_command = form.install_command.data
-        suggestion.genre = form.genre.data
+        form.name = form.name.data
+        form.description = form.description.data
+        form.install_command = form.install_command.data
+        form.genre = form.genre.data
         db.session.commit()
         flash('Your suggestion has been updated!', 'success')
         return redirect(url_for('suggestedapps', id_suggestion=suggestion.id_suggestion))
@@ -155,3 +155,15 @@ def update_sugestion(id_suggestion):
         form.genre.data = suggestion.genre
     return render_template('create_suggestion.html', title='Update Suggestion',
                            form=form, legend='Update Suggestion')
+
+
+@app.route("/suggestedapps/<int:id_suggestion>/delete", methods=['POST'])
+@login_required
+def delete_suggestion(id_suggestion):
+    suggestion = Suggestion.query.get_or_404(id_suggestion)
+    if suggestion.id_user != current_user.id_user:
+        abort(403)
+    db.session.delete(suggestion)
+    db.session.commit()
+    flash('Your suggestion has been deleted!', 'success')
+    return redirect(url_for('suggestedapps'))
