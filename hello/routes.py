@@ -3,7 +3,7 @@ import secrets
 from datetime import datetime
 from flask import render_template, url_for, flash, redirect, request, abort
 from hello import app, db, bcrypt
-from hello.login import RegistrationForm, LoginForm, AdminForm, UpdateAccountForm, SuggestionForm
+from hello.forms import RegistrationForm, LoginForm, AdminForm, UpdateAccountForm, SuggestionForm
 from hello.models import User, Application, Suggestion
 from flask_login import login_user, current_user, logout_user, login_required
 
