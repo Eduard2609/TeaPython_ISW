@@ -31,7 +31,9 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route("/home")
 def home():
     # image_file = url_for('static', filename='app_pics/default.jpg')
-    aplicatie = Application.query.all()
+    # aplicatie = Application.query.all()
+    page = request.args.get('page', 1, type=int)
+    aplicatie = Application.query.paginate(per_page=5)
     return render_template('home.html', aplicatie=aplicatie)
 
 
