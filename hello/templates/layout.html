@@ -69,9 +69,12 @@
                 <li class="list-group-item ">WORK IN PROGRESS : Announcements</li>
                   {%  if current_user.is_authenticated %}
                 <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('new_suggestion') }}">Suggest an app</a> </li>
+
                   {% else %}
                   <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" >Suggest an app</a> </li>
                     {% endif %}
+              <br>
+               <li class="active list-group-item list-group-item-light" aria-disabled="false"> <a class=" nav-item nav-link" >Download</a> </li>
               </ul>
           </div>
         </div>
