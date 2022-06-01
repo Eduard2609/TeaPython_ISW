@@ -3,28 +3,28 @@
     <div class="container-fluid" >
     <h1 class="display-5">Suggestions</h1>
     </div>
-  <article class="media content-section">
-          <div class="media-body">
-            <h2 class="article-title">{{suggestion.name}} <small class="text-muted">{{ suggestion.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
+        <article class="media content-section">
+            <div class="media-body">
+                {% if suggestion.id_user == current_user.id_user %}
+                    <div class="detail">
+                        <a class="btn btn-warning btn-sm m-1" href="{{ url_for('update_sugestion', id_suggestion = suggestion.id_suggestion) }}">Update</a>
+                        <button class="btn btn-danger btn-sm m-1 " data-toggle="modal" data-target="#deleteModal"> Delete</button>
+                    </div>
+                {% endif %}
 
-            <small class="text-muted">Suggested by : {{suggestion.user.username  }}  </small>
-               {% if suggestion.id_user == current_user.id_user %}
-                  <div>
-                    <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('update_sugestion', id_suggestion = suggestion.id_suggestion) }}">Update</a>
-                    <button class="btn btn-danger btn-sm m-1 " data-toggle="modal" data-target="#deleteModal"> Delete</button>
-                  </div>
-              {% endif %}
-              <br>
-<!--            <p class="article-content ">Install :{{ suggestion.install_command}}</p>-->
-              <h5>Install: <span class="badge bg-secondary"> {{ suggestion.install_command}} </span> </h5>
-              <h5 class="Article-content">{{suggestion.description}}</h5>
-              <h4 class="badge text-bg-secondary">Genre : {{suggestion.genre}}</h4>
+            <div class="row-cols-2">
+                <h2 class="article-title">{{suggestion.name}}</h2>
+            </div>
+            <img src="{{ url_for('static',filename='app_pics/'+ suggestion.image_file) }}">
+            <p class="badge bg-secondary">Genre : {{suggestion.genre}}</p>
+            <br>
+                <small class="text-muted">Suggested by : {{suggestion.user.username +' on ' +suggestion.date_sugested.strftime('%Y-%m-%d') }}  </small>
+                <br>
+                <br>
+                <h5 class="Article-content">{{suggestion.description}}</h5>
+            <br>
 
-<!--              <p class="Article-content">Image_file:{{suggestion.image_file}}</p>-->
-              <img src="{{ image_file }}">
-
-<!--              <input type="checkbox" name="checkmark" value="checkmark" style="float:right;">-->
-
+                 <h5>Install: <span class="badge bg-secondary"> {{ suggestion.install_command}} </span> </h5>
           </div>
   </article>
 

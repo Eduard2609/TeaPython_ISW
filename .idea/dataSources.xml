@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="TeaBase" uuid="4eb8e137-fa25-446c-8b87-71750bd13314">
+    <data-source source="LOCAL" name="TeaBase" uuid="d071ac83-58b2-4698-8e09-3ac2e3880ffa">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\momoi\Desktop\Tea Python\TeaPython\hello\TeaBase.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Eduard\Desktop\TeaPython\TeaPython\hello\TeaBase.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

@@ -130,3 +130,28 @@ img {
   scale: none;
   float: right;
 }
+
+.content-section {
+  background: #ffffff;
+  padding: 20px 20px;
+  border: 2px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.detail{
+  float: right;
+}
+
+.btn-warning {
+  background-color: #fdc007;
+  border-color: #fdc007;
+  color: #000000;
+}
+
+.btn-danger {
+  background-color: #db3545;
+  border-color: #db3545;
+  color: #000000;
+}

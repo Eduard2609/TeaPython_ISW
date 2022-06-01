@@ -145,10 +145,10 @@ def update_sugestion(id_suggestion):
         abort(403)
     form = SuggestionForm()
     if form.validate_on_submit():
-        form.name = form.name.data
-        form.description = form.description.data
-        form.install_command = form.install_command.data
-        form.genre = form.genre.data
+        suggestion.name = form.name.data
+        suggestion.description = form.description.data
+        suggestion.install_command = form.install_command.data
+        suggestion.genre = form.genre.data
         db.session.commit()
         flash('Your suggestion has been updated!', 'success')
         return redirect(url_for('suggestedapps', id_suggestion=suggestion.id_suggestion))

@@ -10,17 +10,10 @@
           <div class="media-body">
             <h2><a class="article-title" href="{{ url_for('suggestion', id_suggestion = aplicatie.id_suggestion) }}" >{{aplicatie.name}}</a> <small class="text-muted">{{ aplicatie.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
             <small class="text-muted">Suggested by : {{aplicatie.user.username  }}  </small>
-<!--            <p class="article-content ">Install :{{ aplicatie.install_command}}</p>-->
               <p class="article-content visually-hidden">Install :{{ aplicatie.install_command}}</p>
-
+              <img src="{{ url_for('static',filename='app_pics/'+ aplicatie.image_file) }}">
               <p class="Article-content">{{aplicatie.description}}</p>
               <p class="badge text-bg-secondary">Genre : {{aplicatie.genre}}</p>
-
-<!--              <p class="Article-content">Image_file:{{aplicatie.image_file}}</p>-->
-              <img src="{{ image_file }}">
-
-<!--              <input type="checkbox" name="checkmark" value="checkmark" style="float:right;">-->
-
              </div>
         </article>
 
