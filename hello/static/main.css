@@ -51,6 +51,12 @@ a.article-title:hover {
   white-space: pre-line;
 }
 
+.Article-content {
+  margin-right: 150px;
+}
+
+
+
 .article-img {
   height: 65px;
   width: 65px;
