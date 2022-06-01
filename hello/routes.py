@@ -171,3 +171,5 @@ def delete_suggestion(id_suggestion):
     db.session.commit()
     flash('Your suggestion has been deleted!', 'success')
     return redirect(url_for('suggestedapps'))
+
+
