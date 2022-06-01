@@ -25,8 +25,9 @@
  <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <img src="{{ url_for('static',filename='app_pics/'+ "leaf.png") }}">
+          <img src="{{ url_for('static',filename='app_pics/'+ "leaf.png") }}" >
           <br>
+            
           <a class="navbar-brand mr-4" href="/">TeaWeb</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,6 +38,7 @@
                 <li><a  href="{{ url_for('about') }}">About</a></li>
                 <li> <a  href="{{ url_for('suggestedapps') }}">Suggested Apps</a></li>
 
+
                 {%  if current_user.is_authenticated %}
                     <li > <a  class="active"  href="{{ url_for('account') }}">Account</a></li>
                 <li > <a  class="active"  href="{{ url_for('logout') }}">Logout</a></li>
@@ -44,7 +46,9 @@
                 <li ><a class="active" href="{{ url_for('login') }}">Login</a></li>
                 <li ><a class="active" href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
+
             </ul>
+
           </div>
         </div>
       </nav>
