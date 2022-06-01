@@ -8,13 +8,14 @@
             <h2><a  >{{ aplicatie.name}}</a></h2>
 <!--            <p class="article-content ">Install :{{ aplicatie.install_command}}</p>-->
               <p class="article-content visually-hidden">Install :{{ aplicatie.install_command}}</p>
+              <img src="{{ url_for('static',filename='app_pics/'+ aplicatie.image_file) }}">
 
               <p class="Article-content">{{aplicatie.description}}</p>
               <p class="badge text-bg-secondary">Genre : {{aplicatie.genre}}</p>
 <!--              <p class="Article-content">Image_file:{{aplicatie.image_file}}</p>-->
 
 {#              PREA MARE ICONITA#}
-{#              <img src="{{ url_for('static',filename='app_pics/'+ aplicatie.image_file) }}"> #}
+
 
 <!--              <input type="checkbox" name="checkmark" value="checkmark" style="float:right;">-->
                 <div class="form-check form-switch">

@@ -69,5 +69,5 @@ class AdminForm(FlaskForm):
     description = TextAreaField('Description', validators=[DataRequired()])
     genre = StringField('Genre', validators=[DataRequired()])
     install_command = StringField('Install Command', validators=[DataRequired()])
-    #   image_file = FileField('Image File', validators=[FileAllowed(['jpg', 'png'])])
+    image_file = StringField('Image File', validators=[DataRequired()])
     submit = SubmitField('Submit')

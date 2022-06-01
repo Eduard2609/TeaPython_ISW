@@ -100,18 +100,18 @@ def suggestedapps():
     return render_template('suggestedapps.html', aplicatie=aplicatie)
 
 
-@app.route("/admin")
+@app.route("/admin", methods=['GET', 'POST'])
 @login_required
 def admin():
     form = AdminForm()
     if form.validate_on_submit():
         admin_item = Application(name=form.name.data, description=form.description.data, genre=form.genre.data,
-                                 install_command=form.install_command.data)
+                                 image_file=form.image_file.data, install_command=form.install_command.data)
         db.session.add(admin_item)
         db.session.commit()
         flash('Your suggestion has been submitted!', 'success')
         return redirect(url_for('home'))
-    return render_template('admin.html', title='Admin', form=form)
+    return render_template('admin.html', title='Admin', form=form, legend='New App')
 
 
 @app.route("/suggestedapps/new", methods=['GET', 'POST'])
@@ -120,18 +120,20 @@ def new_suggestion():
     form = SuggestionForm()
     if form.validate_on_submit():
         suggestion_item = Suggestion(name=form.name.data, description=form.description.data, genre=form.genre.data,
-                                    id_user=current_user.id_user)
+                                     id_user=current_user.id_user)
         db.session.add(suggestion_item)
         db.session.commit()
         flash('Your suggestion has been submitted!', 'success')
         return redirect(url_for('suggestedapps'))
     return render_template('create_suggestion.html', title='New Suggestion',
-                           form=form,legend='New Suggestion')
+                           form=form, legend='New Suggestion')
+
 
 @app.route("/suggestedapps/<int:id_suggestion>")
 def suggestion(id_suggestion):
     suggestion = Suggestion.query.get_or_404(id_suggestion)
     return render_template('suggestion.html', title=suggestion.name, suggestion=suggestion)
+
 
 @app.route("/suggestedapps/<int:id_suggestion>/update", methods=['GET', 'POST'])
 @login_required
