@@ -26,7 +26,7 @@ class Application(db.Model):
     id_application = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), unique=True, nullable=False)
     description = db.Column(db.String(120), unique=True, nullable=False)
-    genre = db.Column(db.String(20), unique=True, nullable=False)
+    genre = db.Column(db.String(20), unique=False, nullable=False)
     install_command = db.Column(db.String(120), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
 

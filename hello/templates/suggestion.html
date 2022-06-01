@@ -6,6 +6,11 @@
   <article class="media content-section">
           <div class="media-body">
             <h2 class="article-title">{{suggestion.name}} <small class="text-muted">{{ suggestion.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
+              {% if suggestion.user.username == current_user %}
+                  <div>
+                    <h1> Hello</h1>
+                  </div>
+              {% endif %}
             <small class="text-muted">Suggested by : {{suggestion.user.username  }}  </small>
               <br>
 <!--            <p class="article-content ">Install :{{ suggestion.install_command}}</p>-->
