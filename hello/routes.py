@@ -33,7 +33,7 @@ def home():
     # image_file = url_for('static', filename='app_pics/default.jpg')
     # aplicatie = Application.query.all()
     page = request.args.get('page', 1, type=int)
-    aplicatie = Application.query.order_by(Application.name).paginate(page=page, per_page=4) # order by app name
+    aplicatie = Application.query.order_by(Application.genre).paginate(page=page, per_page=5) # order by app name
     return render_template('home.html', aplicatie=aplicatie)
 
 
