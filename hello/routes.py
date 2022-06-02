@@ -100,7 +100,7 @@ def account():
 def suggestedapps():
 
     page = request.args.get('page', 1, type=int)
-    aplicatie = Suggestion.query.order_by(Suggestion.date_sugested).paginate(page=page, per_page=5)  # order by app name
+    aplicatie = Suggestion.query.order_by(Suggestion.date_sugested).paginate(page=page, per_page=4)  # order by app name
     # aplicatie = Suggestion.query.all()
     return render_template('suggestedapps.html', aplicatie=aplicatie)
 
