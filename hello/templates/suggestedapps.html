@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="container-fluid">
-    <h1 class="display-5">Suggestions</h1>
+    <br>
+     <h1 class="display-3 text-white">Suggestions</h1>
+    <br>
     </div>
-{% for aplicatie in aplicatie %}
+{% for aplicatie in aplicatie.items %}
 
 
   <article class="media content-section">
@@ -19,4 +21,16 @@
 
 
 {% endfor %}
+{% for page_num in aplicatie.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {%  if page_num %}
+        {% if aplicatie.page == page_num %}
+        <a class="btn btn-light mb-4 text-black " href="{{ url_for('suggestedapps',page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+            <a class="btn btn-dark mb-4 text-white " href="{{ url_for('suggestedapps',page=page_num) }}">{{ page_num }}</a>
+            {%  endif %}
+        {% else %}
+        ...
+    {%  endif %}
+{% endfor %}
+
 {% endblock %}

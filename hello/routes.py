@@ -98,7 +98,10 @@ def account():
 
 @app.route("/suggestedapps")
 def suggestedapps():
-    aplicatie = Suggestion.query.all()
+
+    page = request.args.get('page', 1, type=int)
+    aplicatie = Suggestion.query.paginate(page=page, per_page=4)  # order by app name
+    # aplicatie = Suggestion.query.all()
     return render_template('suggestedapps.html', aplicatie=aplicatie)
 
 
