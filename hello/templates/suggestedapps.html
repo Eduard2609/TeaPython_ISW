@@ -10,7 +10,7 @@
 
   <article class="media content-section">
           <div class="media-body">
-            <h2><a class="article-title" href="{{ url_for('suggestion', id_suggestion = aplicatie.id_suggestion) }}" >{{aplicatie.name}}</a> <small class="text-muted">{{ aplicatie.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
+            <h2><a class="article-title" href="{{ url_for('aplicatii.suggestion', id_suggestion = aplicatie.id_suggestion) }}" >{{aplicatie.name}}</a> <small class="text-muted">{{ aplicatie.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
             <small class="text-muted">Suggested by : {{aplicatie.user.username  }}  </small>
               <p class="article-content visually-hidden">Install :{{ aplicatie.install_command}}</p>
               <img src="{{ url_for('static',filename='app_pics/'+ aplicatie.image_file) }}">
@@ -24,9 +24,9 @@
 {% for page_num in aplicatie.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {%  if page_num %}
         {% if aplicatie.page == page_num %}
-        <a class="btn btn-light mb-4 text-black " href="{{ url_for('suggestedapps',page=page_num) }}">{{ page_num }}</a>
+        <a class="btn btn-light mb-4 text-black " href="{{ url_for('aplicatii.suggestedapps',page=page_num) }}">{{ page_num }}</a>
             {% else %}
-            <a class="btn btn-dark mb-4 text-white " href="{{ url_for('suggestedapps',page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-dark mb-4 text-white " href="{{ url_for('aplicatii.suggestedapps',page=page_num) }}">{{ page_num }}</a>
             {%  endif %}
         {% else %}
         ...

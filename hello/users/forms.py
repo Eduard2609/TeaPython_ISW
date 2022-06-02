@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from hello.models import User, Suggestion
+from hello.models import User
 
 
 class RegistrationForm(FlaskForm):
@@ -54,20 +53,3 @@ class UpdateAccountForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 raise ValidationError('Email already used. Please choose another one.')
-
-
-class SuggestionForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-    description = TextAreaField('Description', validators=[DataRequired()])
-    genre = StringField('Genre', validators=[DataRequired()])
-    install_command = StringField('Install Command', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-
-class AdminForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-    description = TextAreaField('Description', validators=[DataRequired()])
-    genre = StringField('Genre', validators=[DataRequired()])
-    install_command = StringField('Install Command', validators=[DataRequired()])
-    image_file = StringField('Image File', validators=[DataRequired()])
-    submit = SubmitField('Submit')

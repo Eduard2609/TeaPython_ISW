@@ -34,17 +34,17 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <ul>
-                <li><a  href="{{ url_for('home') }}">Home</a></li>
-                <li><a  href="{{ url_for('about') }}">About</a></li>
-                <li> <a  href="{{ url_for('suggestedapps') }}">Suggested Apps</a></li>
+                <li><a  href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a  href="{{ url_for('main.about') }}">About</a></li>
+                <li> <a  href="{{ url_for('aplicatii.suggestedapps') }}">Suggested Apps</a></li>
 
 
                 {%  if current_user.is_authenticated %}
-                    <li > <a  class="active"  href="{{ url_for('account') }}">Account</a></li>
-                <li > <a  class="active"  href="{{ url_for('logout') }}">Logout</a></li>
+                    <li > <a  class="active"  href="{{ url_for('users.account') }}">Account</a></li>
+                <li > <a  class="active"  href="{{ url_for('users.logout') }}">Logout</a></li>
                 {% else %}
-                <li ><a class="active" href="{{ url_for('login') }}">Login</a></li>
-                <li ><a class="active" href="{{ url_for('register') }}">Register</a></li>
+                <li ><a class="active" href="{{ url_for('users.login') }}">Login</a></li>
+                <li ><a class="active" href="{{ url_for('users.register') }}">Register</a></li>
                 {% endif %}
 
             </ul>
@@ -75,7 +75,7 @@
                 <li class="list-group-item ">WORK IN PROGRESS : Presets</li>
                 <li class="list-group-item ">WORK IN PROGRESS : Announcements</li>
                   {%  if current_user.is_authenticated %}
-                <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('new_suggestion') }}">Suggest an app</a> </li>
+                <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('aplicatii.new_suggestion') }}">Suggest an app</a> </li>
 
                   {% else %}
                   <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" >Suggest an app (Need to login)</a> </li>

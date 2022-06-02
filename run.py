@@ -1,5 +1,7 @@
-from hello import app
+from hello import create_app
 import asyncio
+
+app = create_app()
 
 async def main():
     if __name__ == '__main__':
