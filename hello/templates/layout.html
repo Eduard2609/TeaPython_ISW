@@ -36,7 +36,7 @@
             <ul>
                 <li><a  href="{{ url_for('main.home') }}">Home</a></li>
                 <li><a  href="{{ url_for('main.about') }}">About</a></li>
-                <li> <a  href="{{ url_for('aplicatii.suggestedapps') }}">Suggested Apps</a></li>
+                <li> <a  href="{{ url_for('applications.suggestedapps') }}">Suggested Apps</a></li>
 
 
                 {%  if current_user.is_authenticated %}
@@ -75,7 +75,7 @@
                 <li class="list-group-item ">WORK IN PROGRESS : Presets</li>
                 <li class="list-group-item ">WORK IN PROGRESS : Announcements</li>
                   {%  if current_user.is_authenticated %}
-                <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('aplicatii.new_suggestion') }}">Suggest an app</a> </li>
+                <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('applications.new_suggestion') }}">Suggest an app</a> </li>
 
                   {% else %}
                   <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" >Suggest an app (Need to login)</a> </li>

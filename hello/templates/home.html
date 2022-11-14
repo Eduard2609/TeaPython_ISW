@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for aplicatie in aplicatie.items %}
+{% for applications in applications.items %}
 
     <br>
 
    <article class="media content-section">
           <div class="media-body">
-            <h2><a  >{{ aplicatie.name}}</a></h2>
-<!--            <p class="article-content ">Install :{{ aplicatie.install_command}}</p>-->
-              <p class="article-content visually-hidden">Install :{{ aplicatie.install_command}}</p>
-              <img src="{{ url_for('static',filename='app_pics/'+ aplicatie.image_file) }}">
+            <h2><a  >{{ applications.name}}</a></h2>
+<!--            <p class="article-content ">Install :{{ applications.install_command}}</p>-->
+              <p class="article-content visually-hidden">Install :{{ applications.install_command}}</p>
+              <img src="{{ url_for('static',filename='app_pics/'+ applications.image_file) }}">
 
-              <p class="Article-content">{{aplicatie.description}}</p>
-              <p class="badge text-bg-secondary">Genre : {{aplicatie.genre}}</p>
+              <p class="Article-content">{{applications.description}}</p>
+              <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
                 <div class="form-check form-switch">
              <input class="form-check-input"  type="checkbox" name="app_check" role="switch" id="flexSwitchCheckDefault">
 <!-- label pt switch            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>-->
@@ -25,9 +25,9 @@
 
 
 {% endfor %}
-{% for page_num in aplicatie.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% for page_num in applications.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {%  if page_num %}
-        {% if aplicatie.page == page_num %}
+        {% if applications.page == page_num %}
         <a class="btn btn-light mb-4 text-black " href="{{ url_for('main.home',page=page_num) }}">{{ page_num }}</a>
             {% else %}
             <a class="btn btn-dark mb-4 text-white " href="{{ url_for('main.home',page=page_num) }}">{{ page_num }}</a>
@@ -40,5 +40,5 @@
 {% endblock %}
 
 
-{{ aplicatie.Application_Name}}
-Install :{{ aplicatie.Install_command}}
+{{ applications.Application_Name}}
+Install :{{ applications.Install_command}}

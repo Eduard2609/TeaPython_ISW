@@ -52,3 +52,7 @@ class Suggestion(db.Model):
     def __repr__(self):
         return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', " \
                f"'{self.image_file}', '{self.date_sugested}')"
+               
+def init_db():
+    db.create_all()
+
