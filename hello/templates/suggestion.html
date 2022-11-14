@@ -7,7 +7,7 @@
             <div class="media-body">
                 {% if suggestion.id_user == current_user.id_user %}
                     <div class="detail">
-                        <a class="btn btn-warning btn-sm m-1" href="{{ url_for('aplicatii.update_sugestion', id_suggestion = suggestion.id_suggestion) }}">Update</a>
+                        <a class="btn btn-warning btn-sm m-1" href="{{ url_for('applications.update_sugestion', id_suggestion = suggestion.id_suggestion) }}">Update</a>
                         <button class="btn btn-danger btn-sm m-1 " data-toggle="modal" data-target="#deleteModal"> Delete</button>
                     </div>
                 {% endif %}
@@ -39,7 +39,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form action="{{ url_for('aplicatii.delete_suggestion', id_suggestion = suggestion.id_suggestion) }}" method="POST">
+          <form action="{{ url_for('applications.delete_suggestion', id_suggestion = suggestion.id_suggestion) }}" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </div>
