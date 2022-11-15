@@ -7,19 +7,19 @@
    <article class="media content-section">
           <div class="media-body">
             <h2><a  >{{ applications.name}}</a></h2>
-<!--            <p class="article-content ">Install :{{ applications.install_command}}</p>-->
+                    <!--<p class="article-content ">Install :{{ applications.install_command}}</p>-->
               <p class="article-content visually-hidden">Install :{{ applications.install_command}}</p>
               <img src="{{ url_for('static',filename='app_pics/'+ applications.image_file) }}">
 
               <p class="Article-content">{{applications.description}}</p>
               <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
-                <div class="form-check form-switch">
-             <input class="form-check-input"  type="checkbox" name="app_check" role="switch" id="flexSwitchCheckDefault">
-<!-- label pt switch            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>-->
-                </div>
 
-
-
+              <form action="{{url_for('AddCart')}}" method="post">
+                <input type="hidden" name="app_id" value="{{id_application}}">
+                <button type="submit" class="btn btn-sm btn-warning"></button>Add Cart</button>
+                <label for=""></label>
+              </form>
+                <a href="" class="btn btn-warning">Add to Cart</a>
              </div>
         </article>
 
