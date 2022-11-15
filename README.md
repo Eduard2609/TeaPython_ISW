@@ -2,10 +2,16 @@
 
 Personal project where I tried learning python and flask by creating an webpage that hosts as a appstore were you can download these apps or suggest new ones
 
-## Installation
-### Create a virtual environment 
+## Installation Using WSL Ubuntu or other distro
 
-* python -m venv teaenv   
+### Install Pip
+* curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+* python3 get-pip.py
+* sudo apt install python3.10-venv
+
+### Create a virtual environment in the project folder
+
+* python3 -m venv teaenv   
 
 ### Activate the virtual environment
 
@@ -17,4 +23,4 @@ Personal project where I tried learning python and flask by creating an webpage 
 
 ### Run the app
 
-* python run.py
+* python3 run.py
