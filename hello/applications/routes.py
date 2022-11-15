@@ -89,6 +89,9 @@ def admin():
     return render_template('admin.html', title='Admin', form=form, legend='New App')
 
 
+@applications.route("/cart")
+def cart():
+    return render_template('cart.html', title='My Cart')
 
 
 

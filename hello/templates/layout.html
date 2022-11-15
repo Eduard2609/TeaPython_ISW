@@ -37,6 +37,8 @@
                 <li><a  href="{{ url_for('main.home') }}">Home</a></li>
                 <li><a  href="{{ url_for('main.about') }}">About</a></li>
                 <li> <a  href="{{ url_for('applications.suggestedapps') }}">Suggested Apps</a></li>
+                <li> <a  href="{{ url_for('applications.cart') }}">My Cart</a></li>
+               
 
 
                 {%  if current_user.is_authenticated %}
@@ -69,6 +71,7 @@
         </div>
         <div class="col-md-4">
         <br>
+
           <div class="content-section">
             <h3>Tea pack</h3>
               <ul class="list-group">
