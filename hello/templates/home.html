@@ -14,11 +14,7 @@
               <p class="Article-content">{{applications.description}}</p>
               <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
 
-              <form action="{{url_for('AddCart')}}" method="post">
-                <input type="hidden" name="app_id" value="{{id_application}}">
-                <button type="submit" class="btn btn-sm btn-warning"></button>Add Cart</button>
-                <label for=""></label>
-              </form>
+              
                 <a href="" class="btn btn-warning">Add to Cart</a>
              </div>
         </article>
