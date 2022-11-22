@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from project import db
 from project.models import Application, Suggestion
 from project.applications.forms import AdminForm, SuggestionForm
-
+from flask import send_file,request
 
 applications = Blueprint('applications', __name__)
 
@@ -93,7 +93,17 @@ def admin():
 def cart():
     return render_template('cart.html', title='My Cart')
 
+@applications.route("/download")
+def download_app():
 
+    path="download.txt"
+    return send_file(path, as_attachment=True)
 
+@applications.route("/", methods=['GET', 'POST'])
+def checkbox():
+    if request.method == 'POST':
+        print(request.form.getlist('mycheckbox'))
+       ## return "success"
+    return render_template('cart.html', title='My Cart')
 
 
