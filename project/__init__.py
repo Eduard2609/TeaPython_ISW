@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-from hello.config import Config
+from project.config import Config
 
 def create_tables():
     db.create_all()
@@ -22,9 +22,9 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
-    from hello.users.routes import users  # importam toate rutele din users cu ajutorul Blueprint
-    from hello.applications.routes import applications
-    from hello.main.routes import main
+    from project.users.routes import users  # importam toate rutele din users cu ajutorul Blueprint
+    from project.applications.routes import applications
+    from project.main.routes import main
     app.register_blueprint(users)
     app.register_blueprint(applications)
     app.register_blueprint(main)

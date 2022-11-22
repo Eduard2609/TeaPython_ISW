@@ -1,8 +1,8 @@
 
 from flask import render_template, url_for, flash, redirect, request
-from hello import db, bcrypt
-from hello.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from hello.models import User
+from project import db, bcrypt
+from project.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from project.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
 

@@ -1,5 +1,5 @@
-from hello import create_app
-from hello import db
+from project import create_app
+from project import db
 
 app = create_app()
 

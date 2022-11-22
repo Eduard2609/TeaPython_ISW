@@ -1,9 +1,9 @@
 from flask import (render_template, url_for, flash,
                    redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
-from hello import db
-from hello.models import Application, Suggestion
-from hello.applications.forms import AdminForm, SuggestionForm
+from project import db
+from project.models import Application, Suggestion
+from project.applications.forms import AdminForm, SuggestionForm
 
 
 applications = Blueprint('applications', __name__)
