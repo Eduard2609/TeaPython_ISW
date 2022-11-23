@@ -8,4 +8,4 @@ def generate_bin_file(item):
     f.close()
 
 #call generate_bin_file with the item 'test'
-#generate_bin_file('test')
+generate_bin_file('test')
