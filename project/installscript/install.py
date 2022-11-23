@@ -2,6 +2,8 @@
 def generate_bin_file(item):
     #open the file to write
     f = open('install.bin', 'w')
+    #convert list to string
+    item = ''.join(item)
     #write the item to the file
     f.write(item)
     #close the file

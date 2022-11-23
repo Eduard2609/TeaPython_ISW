@@ -5,7 +5,7 @@ from project import db
 from project.models import Application, Suggestion
 from project.applications.forms import AdminForm, SuggestionForm
 from flask import send_file,request
-from project.installscript import generate_bin_file
+from project.installscript.install import generate_bin_file
 
 applications = Blueprint('applications', __name__)
 
@@ -104,7 +104,6 @@ def download_app():
 def checkbox():
     if request.method == 'POST':
         print(request.form.getlist('mycheckbox'))
-        generate_bin_file(request.form.getlist('mycheckbox'))
        ## return "success"
     return render_template('cart.html', title='My Cart')
 
