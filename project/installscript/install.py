@@ -9,6 +9,7 @@ def generate_bin_file(item):
     #change save file location
     #close the file
     f.close()
+
     
 
 
