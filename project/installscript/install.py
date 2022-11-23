@@ -1,7 +1,7 @@
 #generate a bin file with a given item from a list that includes the item
 def generate_bin_file(item):
     #open the file to write
-    f = open('bin/install.bin', 'w')
+    f = open('project/bin/install.bin', 'w')
     #convert list to string
     item = ''.join(item)
     #write the item to the file
