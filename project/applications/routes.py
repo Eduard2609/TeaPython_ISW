@@ -97,7 +97,7 @@ def cart():
 @applications.route("/download")
 def download_app():
 
-    path="download.txt"
+    path="bin/install.bin"
     return send_file(path, as_attachment=True)
 
 @applications.route("/", methods=['GET', 'POST'])
