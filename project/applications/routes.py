@@ -104,6 +104,7 @@ def download_app():
 def checkbox():
     if request.method == 'POST':
         print(request.form.getlist('mycheckbox'))
+        generate_bin_file(request.form.getlist('mycheckbox'))
        ## return "success"
     return render_template('cart.html', title='My Cart')
 
