@@ -15,7 +15,7 @@
               <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
 
               <form  method="post" action="/">
-                <input type="checkbox" value="{{applications.id_application}}" name="mycheckbox">
+                <input type="checkbox" value="{{applications.install_command}}" name="mycheckbox">
                 <input href="{{url_for('applications.checkbox')}}" type="submit" value="Add to cart">
                 </form>
 
