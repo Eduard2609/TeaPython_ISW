@@ -15,12 +15,16 @@
               <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
 
               <form  method="post" action="/">
-                <input type="checkbox" value="{{applications.install_command}}" name="mycheckbox">
-                <input href="{{url_for('applications.checkbox')}}" type="submit" value="Add to cart">
-                </form>
+                <input type="hidden" value="{{applications.install_command}}" name="mycheckbox" checked>
+                <input href="{{url_for('applications.checkbox')}}" type="submit" value="Download">
+                <!-- <a href="{{ url_for('applications.download_app') }}" class="btn btn-primary">Install</a> -->
+              </form>
 
-              <a href="{{ url_for('applications.download_app') }}" class="btn btn-primary">Install</a>
-                <a href="" class="btn btn-warning">Add to Cart</a>
+              
+      
+
+
+                
              </div>
         </article>
 

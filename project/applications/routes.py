@@ -5,7 +5,7 @@ from project import db
 from project.models import Application, Suggestion
 from project.applications.forms import AdminForm, SuggestionForm
 from flask import send_file,request
-from project.installscript.install import generate_bin_file
+from project.installscript.install import generate_bat_file
 
 applications = Blueprint('applications', __name__)
 
@@ -97,15 +97,16 @@ def cart():
 @applications.route("/download")
 def download_app():
 
-    path="bin/install.bin"
+    path="bat/install.bat"
     return send_file(path, as_attachment=True)
 
 @applications.route("/", methods=['GET', 'POST'])
 def checkbox():
     if request.method == 'POST':
         print(request.form.getlist('mycheckbox'))
-        generate_bin_file(request.form.getlist('mycheckbox'))
+        generate_bat_file(request.form.getlist('mycheckbox'))
+        path="bat/install.bat"
+        return send_file(path, as_attachment=True)
        ## return "success"
-    return render_template('cart.html', title='My Cart')
-
+    return redirect(url_for('main.home'))
 

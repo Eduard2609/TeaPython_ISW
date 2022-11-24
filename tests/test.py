@@ -2,6 +2,7 @@ import pytest
 
 from project import create_app, db
 from project.models import User, Suggestion
+from project.installscript.install import generate_bat_file
 
 
 @pytest.fixture(scope='module')
@@ -17,4 +18,8 @@ def test_client():
     ctx.push()
     yield testing_client
     ctx.pop()
-    
+
+@pytest.fixture(scope='module')
+def test_bat_file():
+    bat_file = generate_bat_file('test')
+    return bat_file
