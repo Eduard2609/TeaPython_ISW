@@ -5,11 +5,16 @@ def generate_bat_file(item):
     #convert list to string
     item = ''.join(item)
     #write the item to the file
-    f.write('' + ' \r')
-    f.write('$env:ChocolateyInstall="$InstallDir"' + ' \r')
-    f.write('Set-ExecutionPolicy Bypass -Scope Process -Force;' + ' \r')
-    f.write('iex ((New-Object System.Net.WebClient).DownloadString(\'https://chocolatey.org/install.ps1\'))' + ' \r')
-    f.write(item + ' \r')
+    f.write(item+ ' \r')
+    f.write('-y'+ ' \r')
+    #copy the text from command.txt to the file
+    with open('project/bat/command.txt', 'r') as file:
+        data = file.read()
+        f.write(data+ ' \r')
+
+    f.write(item+ ' \r')
+
+    f.write('-y'+ ' \r')
 
     #close the file
     f.close()
