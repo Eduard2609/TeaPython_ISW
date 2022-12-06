@@ -23,7 +23,7 @@ def generate_bat_file(item):
 
     
 #call generate_bin_file with the item 'test'
-generate_bat_file('test')
+#generate_bat_file('test')
 
 
 
