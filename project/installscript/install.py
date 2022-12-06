@@ -5,16 +5,16 @@ def generate_bat_file(item):
     #convert list to string
     item = ''.join(item)
     #write the item to the file
-    f.write(item)
-    f.write(' '+'-y'+ ' \r')
+    f.write(item+ ' \r')
+    f.write('-y'+ ' \r')
     #copy the text from command.txt to the file
     with open('project/bat/command.txt', 'r') as file:
         data = file.read()
         f.write(data+ ' \r')
 
-    f.write(item)
+    f.write(item+ ' \r')
 
-    f.write(' '+'-y')
+    f.write('-y'+ ' \r')
 
     #close the file
     f.close()
@@ -24,8 +24,3 @@ def generate_bat_file(item):
     
 #call generate_bin_file with the item 'test'
 generate_bat_file('test')
-
-
-
-#convert this long string to a list
-
