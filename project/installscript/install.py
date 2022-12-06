@@ -6,7 +6,7 @@ def generate_bat_file(item):
     item = ''.join(item)
     #write the item to the file
     f.write(item)
-    f.write('-y'+ ' \r')
+    f.write(' '+'-y'+ ' \r')
     #copy the text from command.txt to the file
     with open('project/bat/command.txt', 'r') as file:
         data = file.read()
@@ -14,7 +14,7 @@ def generate_bat_file(item):
 
     f.write(item)
 
-    f.write('-y')
+    f.write(' '+'-y')
 
     #close the file
     f.close()
