@@ -90,9 +90,9 @@ def admin():
     return render_template('admin.html', title='Admin', form=form, legend='New App')
 
 
-@applications.route("/cart")
-def cart():
-    return render_template('cart.html', title='My Cart')
+@applications.route("/bundle")
+def bundle():
+    return render_template('bundle.html', title='Bundle')
 
 @applications.route("/download")
 def download_app():
