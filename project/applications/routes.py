@@ -81,7 +81,8 @@ def suggestedapps():
 def admin():
     form = AdminForm()
     print(current_user.id_user)
-    if current_user.id_user !=4:	
+    print(current_user.role)
+    if current_user.role != 'admin':	
         return redirect(url_for('main.home'))
     if form.validate_on_submit():
         admin_item = Application(name=form.name.data, description=form.description.data, genre=form.genre.data,
