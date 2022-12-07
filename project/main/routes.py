@@ -7,7 +7,7 @@ main = Blueprint('main', __name__)
 @main.route("/home")
 def home():
     page = request.args.get('page', 1, type=int)
-    applications = Application.query.order_by(Application.genre).paginate(page=page, per_page=10) # order by app name
+    applications = Application.query.order_by(Application.genre).paginate(page=page, per_page=5) # order by app name
     return render_template('home.html', applications=applications)
 
 
