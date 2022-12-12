@@ -30,10 +30,11 @@ class Application(db.Model):
     genre = db.Column(db.String(20), nullable=False)
     install_command = db.Column(db.String(120), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    version = db.Column(db.String(20), nullable=False, default='1.0')
 
     def __repr__(self):
         return f"Application('{self.name}', '{self.description}', '{self.genre}', " \
-               f"'{self.install_command}', '{self.image_file}') "
+               f"'{self.install_command}', '{self.image_file}' , '{self.version}') "
 
 
 class Suggestion(db.Model):
@@ -43,6 +44,7 @@ class Suggestion(db.Model):
     genre = db.Column(db.String(20), unique=True, nullable=False)
     install_command = db.Column(db.String(120), nullable=True)
     image_file = db.Column(db.String(20), nullable=True, default='default.jpg')
+    version = db.Column(db.String(20), nullable=True, default='1.0')
     date_sugested = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     id_user = db.Column(db.Integer, db.ForeignKey('user.id_user'), nullable=False)
@@ -52,7 +54,7 @@ class Suggestion(db.Model):
 
     def __repr__(self):
         return f"Suggestion('{self.name}', '{self.description}', '{self.genre}', " \
-               f"'{self.image_file}', '{self.date_sugested}')"
+               f"'{self.image_file}', '{self.version}', '{self.date_sugested}')"
                
 def init_db():
     db.create_all()
