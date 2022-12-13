@@ -44,7 +44,7 @@ class Suggestion(db.Model):
     genre = db.Column(db.String(20), unique=True, nullable=False)
     install_command = db.Column(db.String(120), nullable=True)
     image_file = db.Column(db.String(20), nullable=True, default='default.jpg')
-    version = db.Column(db.String(20), nullable=True, default='1.0')
+    # version = db.Column(db.String(20), nullable=True, default='1.0')
     date_sugested = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     id_user = db.Column(db.Integer, db.ForeignKey('user.id_user'), nullable=False)
