@@ -5,12 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Install Multiple Apps</title>
-
     <link rel="shortcut icon" href="{{url_for('static',filename='app_pics/'+ 'leaf.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <!--- Basic Page Needs /  end-->
-
     <!--- pentru pagina principala lista de aplicatii -->
     {% if Aplication_Name %}
         <title>Application Name :{{ Aplication_Name }}</title>
@@ -18,7 +16,6 @@
         <title>Aplications</title>
     {% endif %}
     <!--- pentru pagina principala lista de aplicatii / end-->
-
 </head>
 <body>
 
@@ -38,9 +35,6 @@
                 <li><a  href="{{ url_for('main.about') }}">About</a></li>
                 <li> <a  href="{{ url_for('applications.suggestedapps') }}">Suggested Apps</a></li>
                 <li> <a  href="{{ url_for('applications.bundle') }}">Bundle</a></li>
-               
-
-
                 {%  if current_user.is_authenticated %}
                     <li > <a  class="active"  href="{{ url_for('users.account') }}">Account</a></li>
                 <li > <a  class="active"  href="{{ url_for('users.logout') }}">Logout</a></li>
@@ -48,9 +42,7 @@
                 <li ><a class="active" href="{{ url_for('users.login') }}">Login</a></li>
                 <li ><a class="active" href="{{ url_for('users.register') }}">Register</a></li>
                 {% endif %}
-
             </ul>
-
           </div>
         </div>
       </nav>
@@ -71,27 +63,18 @@
         </div>
         <div class="col-md-4">
         <br>
-
           <div class="content-section position-fixed">
             <h3>Tea pack</h3>
               <ul class="list-group">
                 <li class="list-group-item ">WORK IN PROGRESS : Presets</li>
-                <li class="list-group-item ">WORK IN PROGRESS : Announcements</li>
                   {%  if current_user.is_authenticated %}
-                <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('applications.new_suggestion') }}">Suggest an app</a> </li>
-
                   {% else %}
                   <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" >Suggest an app (Need to login)</a> </li>
                     {% endif %}
               <br>
-
+              <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('applications.new_suggestion') }}">Suggest an app</a> </li>
               </ul>
           <br>
-              <div class="content-section">
-                  <ul class="list-group">
-                   <li class="active list-group-item list-group-item-light" aria-disabled="false"> <a class=" nav-item nav-link" >Download</a> </li>
-                  </ul>
-              </div>
           </div>
         </div>
       </div>
