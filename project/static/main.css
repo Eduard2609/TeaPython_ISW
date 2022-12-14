@@ -5,7 +5,10 @@
 }
 body {
   margin-top: 5rem;
-  background: #00aa95;
+  with: 100vw;
+  height: 100vh;
+  background: linear-gradient(45deg, #00aa95, #00cc76, #ffffff);
+
 }
 
 h2,
@@ -160,3 +163,6 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 /* ----------------------------------------- */
+.media .content-section .media-body .badge {
+  color: #00aa95;
+}
