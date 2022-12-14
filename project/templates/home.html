@@ -29,7 +29,7 @@
               <div class="row-cols-2">
               <form  method="post" action="/">
                 <input type="hidden" value="{{applications.install_command}}" name="mycheckbox" checked>
-                <input href="{{url_for('applications.checkbox')}}" type="submit" value="Download">
+                <input href="{{url_for('applications.checkbox')}}" type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
                 <!-- <a href="{{ url_for('applications.download_app') }}" class="btn btn-primary">Install</a> -->
               </form>
              </div>

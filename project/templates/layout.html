@@ -64,15 +64,15 @@
         <div class="col-md-4">
         <br>
           <div class="content-section position-fixed">
-            <h3>Tea pack</h3>
+            <h3 style="font-weight: 500">TeaPack</h3>
               <ul class="list-group">
-                <li class="list-group-item ">WORK IN PROGRESS : Presets</li>
+                <li class="list-group-item" style="font-weight: 300">WORK IN PROGRESS: Presets</li>
                   {%  if current_user.is_authenticated %}
                   {% else %}
-                  <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" >Suggest an app (Need to login)</a> </li>
+                  <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" style="font-weight: 300">Suggest an app (Login needed)</a> </li>
                     {% endif %}
               <br>
-              <li class="active list-group-item list-group-item-light"> <a class=" nav-item nav-link" href="{{ url_for('applications.new_suggestion') }}">Suggest an app</a> </li>
+              <li class="active list-group-item list-group-item-light" style="background-color: #00aa95"> <a class=" nav-item nav-link" href="{{ url_for('applications.new_suggestion') }}" style="font-weight: 300m; background-color: #00aa95">Suggest an app</a> </li>
               </ul>
           <br>
           </div>
@@ -90,8 +90,8 @@
     <div class="container p-4 pb-0">
       <!-- Section: CTA -->
       <section class="">
-        <p class="d-flex justify-content-center align-items-center text-black" style="font-weight: 300">
-          <span class="me-3">Olteanu Eduard, Momoi Alexandru, Gheorghe Luca, Teleki Tibor</span>
+        <p class="d-flex justify-content-center align-items-center text-black" style="font-weight: 400">
+          <span class="me-3">Olteanu Eduard  |  Momoi Alexandru  |  Gheorghe Luca  |  Teleki Tibor</span>
         </p>
       </section>
       <!-- Section: CTA -->
@@ -100,7 +100,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #212529; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; font-weight: 300">
-      Proiect Inginerie Software, Universitatea Transilvania Brașov
+      Proiect Inginerie Software, Universitatea Transilvania Brașov 2022
     </div>
     <!-- Copyright -->
   </footer>
