@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 *{
   font-family: Roboto;
 }
@@ -163,6 +162,14 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 /* ----------------------------------------- */
-.media .content-section .media-body .badge {
-  color: #00aa95;
+.text-center .mainText h1{
+  font-weight: 300;
+  color: #ffffff;
+  font-size: 5rem;
+}
+
+.text-center .mainText h2{
+  font-family: 'El Messiri', sans-serif;
+  color: #ffffff;
+  font-size: 6rem;
 }
