@@ -32,7 +32,7 @@ class Application(db.Model):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     version = db.Column(db.String(20), nullable=False, default='1.0')
 
-    def get_user(self):
+    def get_role(self):
         return User.query.get(int(self.role))
 
     def __repr__(self):
