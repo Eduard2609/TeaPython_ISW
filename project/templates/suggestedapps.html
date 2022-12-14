@@ -11,11 +11,11 @@
   <article class="media content-section">
           <div class="media-body">
             <h2><a class="article-title" href="{{ url_for('applications.suggestion', id_suggestion = applications.id_suggestion) }}" >{{applications.name}}</a> <small class="text-muted">{{ applications.date_sugested.strftime('%Y-%m-%d') }}</small></h2>
-            <small class="text-muted">Suggested by : {{applications.user.username  }}  </small>
+            <small class="text-muted">Suggested by: {{applications.user.username  }}  </small>
               <p class="article-content visually-hidden">Install :{{ applications.install_command}}</p>
               <img src="{{ url_for('static',filename='app_pics/'+ applications.image_file) }}">
               <p class="Article-content">{{applications.description}}</p>
-              <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
+              <p class="badge text-bg-secondary" style="background-color: #00aa95; font-weight: 300">Genre: {{applications.genre}}</p>
              </div>
         </article>
 
