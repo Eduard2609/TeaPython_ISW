@@ -85,6 +85,8 @@ img {
 #navbarToggle a{
   color: #ffffff;
   transition: all .2s ease-in;
+  font-weight: 300;
+  font-size: 1.2rem;
 }
 
 #navbarToggle a:hover {
