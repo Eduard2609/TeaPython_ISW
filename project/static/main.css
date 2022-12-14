@@ -77,6 +77,15 @@ img {
 .navbar-nav .nav-brand {
   font-weight: 600;
 }
+
+#navbarToggle a{
+  color: #ffffff;
+  transition: all .2s ease-in;
+}
+
+#navbarToggle a:hover {
+  color: #00aa95;
+}
 /* ----------------------------------------- */
 .content-section {
   background: #ffffff;

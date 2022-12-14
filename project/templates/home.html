@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-
 <br>
 {% for page_num in applications.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 {%  if page_num %}
@@ -13,17 +12,10 @@
     ...
 {%  endif %}
 {% endfor %}
-
 {% for applications in applications.items %}
-
-   
  
-    <br>
-
+<br>
    <article class="media content-section">
-    
-
-
           <div class="media-body">
             <h2><a  >{{ applications.name}}</a></h2>
                     <!--<p class="article-content ">Install :{{ applications.install_command}}</p>-->
@@ -33,22 +25,15 @@
               <p class="Article-content">{{applications.description}}</p>
               <p class="badge text-bg-secondary">Genre : {{applications.genre}}</p>
               <p class="badge text-bg-secondary">Version : {{applications.version}}</p>
-
+              <div class="row-cols-2">
               <form  method="post" action="/">
                 <input type="hidden" value="{{applications.install_command}}" name="mycheckbox" checked>
                 <input href="{{url_for('applications.checkbox')}}" type="submit" value="Download">
                 <!-- <a href="{{ url_for('applications.download_app') }}" class="btn btn-primary">Install</a> -->
               </form>
-
-              
-      
-
-
-                
              </div>
         </article>
-
-
+       
 {% endfor %}
 {% for page_num in applications.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {%  if page_num %}
@@ -61,10 +46,6 @@
         ...
     {%  endif %}
 {% endfor %}
-
-
-
 {% endblock %}
-
 {{ applications.Application_Name}}
 Install :{{ applications.Install_command}}

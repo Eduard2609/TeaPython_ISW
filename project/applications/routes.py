@@ -4,10 +4,14 @@ from flask_login import current_user, login_required
 from project import db
 from project.models import Application, Suggestion
 from project.applications.forms import AdminForm, SuggestionForm
-from flask import send_file,request
+from flask import send_file, request
 from project.installscript.install import generate_bat_file
 
 applications = Blueprint('applications', __name__)
+
+#///////////////////////////////////////////////////////////////////////////////////////
+#Suggestions code
+
 
 @applications.route("/suggestedapps/new", methods=['GET', 'POST'])
 @login_required
@@ -29,7 +33,6 @@ def suggestion(id_suggestion):
     suggestion = Suggestion.query.get_or_404(id_suggestion)
     return render_template('suggestion.html', title=suggestion.name, suggestion=suggestion)
 
-    
 
 @applications.route("/suggestedapps/<int:id_suggestion>/update", methods=['GET', 'POST'])
 @login_required
@@ -71,9 +74,12 @@ def delete_suggestion(id_suggestion):
 def suggestedapps():
 
     page = request.args.get('page', 1, type=int)
-    applications = Suggestion.query.order_by(Suggestion.date_sugested.desc()).paginate(page=page, per_page=4)  # order by suggested date
+    applications = Suggestion.query.order_by(Suggestion.date_sugested.desc()).paginate(
+        page=page, per_page=4)  # order by suggested date
     # applications = Suggestion.query.all()
     return render_template('suggestedapps.html', applications=applications)
+#////////////////////////////////////////////////////////////////////////////////////////
+#Admin code
 
 
 @applications.route("/admin", methods=['GET', 'POST'])
@@ -82,7 +88,7 @@ def admin():
     form = AdminForm()
     print(current_user.id_user)
     print(current_user.role)
-    if current_user.role != 'admin':	
+    if current_user.role != 'admin':
         return redirect(url_for('main.home'))
     if form.validate_on_submit():
         admin_item = Application(name=form.name.data, description=form.description.data, genre=form.genre.data,
@@ -94,23 +100,49 @@ def admin():
     return render_template('admin.html', title='Admin', form=form, legend='New App')
 
 
-@applications.route("/bundle")
-def bundle():
-    return render_template('bundle.html', title='Bundle')
+@applications.route("/home/<int:id_application>/update", methods=['GET', 'POST'])
+@login_required
+def update_application(id_application):
+    application = Application.query.get_or_404(id_application)
+    if current_user.role != 'admin':
+        abort(403)
+    form = AdminForm()
+    if form.validate_on_submit():
+        application.name = form.name.data
+        application.description = form.description.data
+        application.install_command = form.install_command.data
+        application.genre = form.genre.data
+        application.version = form.version.data
+        db.session.commit()
+        flash('Your application has been updated!', 'success')
+        return redirect(url_for('main.home'))
+    elif request.method == 'GET':
+        form.name.data = suggestion.name
+        form.description.data = suggestion.description
+        form.install_command.data = suggestion.install_command
+        form.genre.data = suggestion.genre
+    return render_template('admin.html', title='Admin', form=form, legend='Update App')
+#////////////////////////////////////////////////////////////////////////////////////////
+
 
 @applications.route("/download")
 def download_app():
 
-    path="bat/install.bat"
+    path = "bat/install.bat"
     return send_file(path, as_attachment=True)
+
 
 @applications.route("/", methods=['GET', 'POST'])
 def checkbox():
     if request.method == 'POST':
         print(request.form.getlist('mycheckbox'))
         generate_bat_file(request.form.getlist('mycheckbox'))
-        path="bat/install.bat"
+        path = "bat/install.bat"
         return send_file(path, as_attachment=True)
        ## return "success"
     return redirect(url_for('main.home'))
 
+
+@applications.route("/bundle")
+def bundle():
+    return render_template('bundle.html', title='Bundle')
