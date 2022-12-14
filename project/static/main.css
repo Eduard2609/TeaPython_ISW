@@ -5,9 +5,11 @@
 body {
   margin-top: 5rem;
   with: 100vw;
-  height: 100vh;
-  background: linear-gradient(45deg, #00aa95, #00cc76, #ffffff);
-
+  height: 100%;
+    background: linear-gradient(45deg, #00aa95, #00cc76, #ffffff);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* overflow: hidden; */
 }
 
 h2,
@@ -171,5 +173,26 @@ a.article-title:hover {
 .text-center .mainText h2{
   font-family: 'El Messiri', sans-serif;
   color: #ffffff;
-  font-size: 6rem;
+  font-size: 7rem;
+}
+
+.text-center .mainText h3 {
+  font-weight: 300;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.text-center .mainText h4 {
+  font-weight: 100;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.container-jos {
+  margin-bottom: 24px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-style: none;
+  border-radius: 7px;
 }
