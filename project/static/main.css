@@ -92,6 +92,11 @@ img {
 #navbarToggle a:hover {
   color: #00aa95;
 }
+
+.navbar {
+  background-color: #212529;
+}
+
 /* ----------------------------------------- */
 .content-section {
   background: #ffffff;
