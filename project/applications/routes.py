@@ -132,6 +132,13 @@ def download_app():
     return send_file(path, as_attachment=True)
 
 
+@applications.route("/downloadbundle")
+def download_bundle():
+
+    path = "bat/bundles_script/music.bat"
+    return send_file(path, as_attachment=True)
+
+
 @applications.route("/", methods=['GET', 'POST'])
 def checkbox():
     if request.method == 'POST':
