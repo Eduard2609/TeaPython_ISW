@@ -1,14 +1,101 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div class="text-center">
-    <div class="mainText">
-    <br>
+<br>
 
-    <h1 class="display-3 text-white">Bundle</h1>
+<!-- {% for page_num in applications.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {%  if page_num %}
+        {% if applications.page == page_num %}
+        <a class="btn btn-light mb-4 text-black " href="{{ url_for('applications.bundle',page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+            <a class="btn btn-dark mb-4 text-white " href="{{ url_for('applications.bundle',page=page_num) }}">{{ page_num }}</a>
+            {%  endif %}
+        {% else %}
+        ...
+    {%  endif %}
+{% endfor %} -->
 
-    </div>
 
-</div>
+
+
+<article class="media content-section">
+    <div class="media-body">
+      <h2><a  >Gaming Bundle</a></h2>
+              <!--<p class="article-content ">Install :{{ applications.install_command}}</p>-->
+        
+          <img src="{{ url_for('static',filename='app_pics/'+ "steam.png") }}">
+          <img src="{{ url_for('static',filename='app_pics/'+ "epic.png") }}">
+          <img src="{{ url_for('static',filename='app_pics/'+ "ubisoft.png") }}">
+          <img src="{{ url_for('static',filename='app_pics/'+ "origin.png") }}">
+          <img src="{{ url_for('static',filename='app_pics/'+ "nvidia.png") }}">
+          <img src="{{ url_for('static',filename='app_pics/'+ "discord.png") }}">
+
+
+        <p class="Article-content" style="font-weight: 300"> This bundle contains: all gaming platforms (Origin,Ubisoft Connect,Epic Games Launcher, Steam) + Discord + Geforce Experience</p>
+        <p class="badge" style="background-color: #00aa95; font-weight: 300">Genre: Gaming</p>
+        <!-- <p class="badge" style="background-color: #00aa95; font-weight: 300">Version: {{applications.version}}</p> -->
+        <div class="row-cols-2">
+        <form  method="post" action="/">
+          <!-- <input type="hidden" value="{{applications.install_command}}" name="mycheckbox" checked> -->
+          <!-- <input href="{{url_for('applications.checkbox')}}" type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400"> -->
+          <!-- <a href="{{ url_for('applications.download_app') }}" class="btn btn-primary">Install</a> -->
+          <input type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+        </form>
+       </div>
+  </article>
+
+  
+<article class="media content-section">
+  <div class="media-body">
+    <h2><a  >Music and Video Streaming</a></h2>
+            <!--<p class="article-content ">Install :{{ applications.install_command}}</p>-->
+      
+        
+     
+        <img src="{{ url_for('static',filename='app_pics/'+ "itunes.png") }}">
+        <img src="{{ url_for('static',filename='app_pics/'+ "spotify.png") }}">
+        <img src="{{ url_for('static',filename='app_pics/'+ "vlc.png") }}">
+        
+
+
+      <p class="Article-content" style="font-weight: 300"> This bundle contains: Spotify, VLC Media Player, Itunes</p>
+      <p class="badge" style="background-color: #00aa95; font-weight: 300">Genre: Audio&Video</p>
+      <div class="row-cols-2">
+      <form  method="post" action="/">
+        <input type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+      </form>
+     </div>
+</article>
+
+<article class="media content-section">
+  <div class="media-body">
+    <h2><a  >Browsers</a></h2>
+            <!--<p class="article-content ">Install :{{ applications.install_command}}</p>-->
+      
+        <img src="{{ url_for('static',filename='app_pics/'+ "chrome.png") }}">
+        <img src="{{ url_for('static',filename='app_pics/'+ "opera.png") }}">
+        <img src="{{ url_for('static',filename='app_pics/'+ "opera_gx.png") }}">
+        <img src="{{ url_for('static',filename='app_pics/'+ "firefox.png") }}">
+      
+
+
+      <p class="Article-content" style="font-weight: 300"> This bundle contains: Firefox, Opera & Opera Gx , Google Chrome</p>
+      <p class="badge" style="background-color: #00aa95; font-weight: 300">Genre: Gaming</p>
+      <div class="row-cols-2">
+      <form  method="post" action="/">
+        <input type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+      </form>
+     </div>
+</article>
+
+
+
+
+
+
+
+  
+        
+
 
 {% endblock %}

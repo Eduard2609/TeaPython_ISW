@@ -145,4 +145,7 @@ def checkbox():
 
 @applications.route("/bundle")
 def bundle():
-    return render_template('bundle.html', title='Bundle')
+    page = request.args.get('page', 1, type=int)
+    applications = Application.query.order_by(Application.genre).paginate(page=page, per_page=5) # order by app name
+    return render_template('bundle.html', applications=applications)
+  
