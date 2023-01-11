@@ -20,7 +20,7 @@
 
 <article class="media content-section">
     <div class="media-body">
-      <h2><a  >Gaming Bundle</a></h2>
+      <h2><a  >Gaming Bundle Nvidia Edtion</a></h2>
               <!--<p class="article-content ">Install :{{ applications.install_command}}</p>-->
         
           <img src="{{ url_for('static',filename='app_pics/'+ "steam.png") }}">
@@ -31,7 +31,7 @@
           <img src="{{ url_for('static',filename='app_pics/'+ "discord.png") }}">
 
 
-        <p class="Article-content" style="font-weight: 300"> This bundle contains: all gaming platforms (Origin,Ubisoft Connect,Epic Games Launcher, Steam) + Discord + Geforce Experience</p>
+        <p class="Article-content" style="font-weight: 300"> This bundle contains: all gaming platforms for Nvidia based systems (Origin,Ubisoft Connect,Epic Games Launcher, Steam) + Discord + Geforce Experience</p>
         <p class="badge" style="background-color: #00aa95; font-weight: 300">Genre: Gaming</p>
         <!-- <p class="badge" style="background-color: #00aa95; font-weight: 300">Version: {{applications.version}}</p> -->
         <div class="row-cols-2">
@@ -39,7 +39,45 @@
           <!-- <input type="hidden" value="{{applications.install_command}}" name="mycheckbox" checked> -->
           <!-- <input href="{{url_for('applications.checkbox')}}" type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400"> -->
           <!-- <a href="{{ url_for('applications.download_app') }}" class="btn btn-primary">Install</a> -->
-          <input type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+
+          <div class="row-cols-2">
+            <textarea id="text" hidden="true">
+                choco install origin
+                choco install ubisoft-connect
+                choco install nvidia-geforce-now
+                choco install epicgameslauncher
+                choco install steam
+                choco install discord
+    
+                echo Chocolatey is not installed, will be installed
+                @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"  
+    
+                choco install origin
+                choco install ubisoft-connect
+                choco install nvidia-geforce-now
+                choco install epicgameslauncher
+                choco install steam
+                choco install discord
+            </textarea>
+    
+            <input type="submit" id="btnd" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+          <script>
+            function download(file, text) {
+              var element = document.createElement('a');element.setAttribute('href','data:text/plain;charset=utf-8, '+ encodeURIComponent(text));element.setAttribute('download', file);
+    
+              document.body.appendChild(element);
+              element.click();
+              document.body.removeChild(element);
+            }
+    
+            document.getElementById("btnd").addEventListener("click", function(){
+              var text = document.getElementById("text").value;
+              var filename = "bundle.bat";
+    
+              download(filename, text);
+            }, false);
+          </script>
+         </div>
         </form>
        </div>
   </article>
@@ -61,9 +99,36 @@
       <p class="Article-content" style="font-weight: 300"> This bundle contains: Spotify, VLC Media Player, Itunes</p>
       <p class="badge" style="background-color: #00aa95; font-weight: 300">Genre: Audio&Video</p>
       <div class="row-cols-2">
-      <form  method="post" action="/">
-        <input type="submit" value="Download "  class="btn btn-dark" style="background-color: #212529; font-weight: 400">
-      </form>
+        <textarea id="text" hidden="true">
+            choco install vlc
+            choco install itunes 
+            choco install spotify
+
+            echo Chocolatey is not installed, will be installed
+            @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"  
+
+            choco install vlc
+            choco install itunes
+            choco install spotify
+        </textarea>
+
+        <input type="submit" id="btnd" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+      <script>
+        function download(file, text) {
+          var element = document.createElement('a');element.setAttribute('href','data:text/plain;charset=utf-8, '+ encodeURIComponent(text));element.setAttribute('download', file);
+
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+        }
+
+        document.getElementById("btnd").addEventListener("click", function(){
+          var text = document.getElementById("text").value;
+          var filename = "bundle.bat";
+
+          download(filename, text);
+        }, false);
+      </script>
      </div>
 </article>
 
@@ -82,9 +147,38 @@
       <p class="Article-content" style="font-weight: 300"> This bundle contains: Firefox, Opera & Opera Gx , Google Chrome</p>
       <p class="badge" style="background-color: #00aa95; font-weight: 300">Genre: Gaming</p>
       <div class="row-cols-2">
-      <form  method="post" action="/">
-        <input type="submit" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
-      </form>
+        <textarea id="text" hidden="true">
+            choco install firefox
+            choco install opera
+            choco install opera-gx
+            choco install googlechrome
+
+            echo Chocolatey is not installed, will be installed
+            @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"  
+
+            choco install firefox
+            choco install opera
+            choco install opera-gx
+            choco install googlechrome
+        </textarea>
+
+        <input type="submit" id="btnd" value="Download" class="btn btn-dark" style="background-color: #212529; font-weight: 400">
+      <script>
+        function download(file, text) {
+          var element = document.createElement('a');element.setAttribute('href','data:text/plain;charset=utf-8, '+ encodeURIComponent(text));element.setAttribute('download', file);
+
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+        }
+
+        document.getElementById("btnd").addEventListener("click", function(){
+          var text = document.getElementById("text").value;
+          var filename = "bundle.bat";
+
+          download(filename, text);
+        }, false);
+      </script>
      </div>
 </article>
 
