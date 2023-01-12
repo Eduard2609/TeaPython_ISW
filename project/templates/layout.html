@@ -37,11 +37,17 @@
                 <li> <a  href="{{ url_for('applications.bundle') }}">Bundle</a></li>
                 {%  if current_user.is_authenticated %}
                     <li > <a  class="active"  href="{{ url_for('users.account') }}">Account</a></li>
-                <li > <a  class="active"  href="{{ url_for('users.logout') }}">Logout</a></li>
+                    <li > <a  class="active"  href="{{ url_for('users.logout') }}">Logout</a></li>
+                    {%if current_user.role == 'admin' %}
+                    <li > <a  class="active"  href="{{ url_for('applications.admin') }}">Admin Page</a></li>
+                    {% endif %}
+                    
                 {% else %}
                 <li ><a class="active" href="{{ url_for('users.login') }}">Login</a></li>
                 <li ><a class="active" href="{{ url_for('users.register') }}">Register</a></li>
                 {% endif %}
+
+                
             </ul>
           </div>
         </div>
