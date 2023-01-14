@@ -203,3 +203,9 @@ a.article-title:hover {
   border-style: none;
   border-radius: 7px;
 }
+
+.media-body img{
+  width: 32px;
+  length: 32px;
+  padding: 5px;
+}
