@@ -24,3 +24,8 @@ Personal project where I tried learning python and flask by creating an webpage 
 ### Run the app
 
 * python3 run.py
+
+### Run the tests
+* python -m pytest -v 
+* python -m pytest tests/unit   # Run unit tests
+* python -m pytest --last-failed  # Run last failed tests
