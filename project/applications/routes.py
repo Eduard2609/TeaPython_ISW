@@ -81,6 +81,10 @@ def suggestedapps():
 #////////////////////////////////////////////////////////////////////////////////////////
 #Admin code
 
+@applications.route("/feedback")
+def feedback():
+    return render_template('feedback.html', title='Feedback')
+
 
 @applications.route("/admin", methods=['GET', 'POST'])
 @login_required

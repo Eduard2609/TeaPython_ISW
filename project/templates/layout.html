@@ -72,12 +72,13 @@
           <div class="content-section position-fixed">
             <h3 style="font-weight: 500">TeaPack</h3>
               <ul class="list-group">
-                <li class="list-group-item" style="font-weight: 300">WORK IN PROGRESS: Presets</li>
+                <li class="active list-group-item list-group-item-light" style="background-color: #00aa95"> <a class=" nav-item nav-link" href="{{ url_for('applications.feedback') }}" style="font-weight: 300m; background-color: #00aa95">Give us feedback</a>  </li>
                   {%  if current_user.is_authenticated %}
                   {% else %}
                   <li class="list-group-item disabled" aria-disabled="true"> <a class=" nav-item nav-link" style="font-weight: 300">Suggest an app (Login needed)</a> </li>
                     {% endif %}
               <br>
+        
               <li class="active list-group-item list-group-item-light" style="background-color: #00aa95"> <a class=" nav-item nav-link" href="{{ url_for('applications.new_suggestion') }}" style="font-weight: 300m; background-color: #00aa95">Suggest an app</a> </li>
               </ul>
           <br>
